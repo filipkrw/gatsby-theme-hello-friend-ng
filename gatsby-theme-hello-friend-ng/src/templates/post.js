@@ -1,5 +1,24 @@
 import React from "react"
+import { graphql } from "gatsby"
 
-const PostTemplate = () => <p>TODO: Build the post page template</p>
+import Layout from "../components/layout"
+import Post from "../components/post"
+
+export const query = graphql`
+  query($postID: String!) {
+    post(id: { eq: $postID }) {
+      title
+      published_at(formatString: "MMMM DD YYYY")
+      body
+      slug
+    }
+  }
+`
+
+const PostTemplate = ({ data: { post } }) => (
+  <Layout>
+    <Post {...post} />
+  </Layout>
+)
 
 export default PostTemplate

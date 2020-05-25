@@ -15,7 +15,7 @@ exports.sourceNodes = ({ actions }) => {
   actions.createTypes(`
     type Post implements Node @dontInfer {
       id: ID!
-      name: String!
+      title: String!
       published_at: Date! @dateformat @proxy(from: "published_at")
       body: String!
       slug: String!
@@ -40,7 +40,7 @@ exports.createResolvers = ({ createResolvers }) => {
   createResolvers({
     Post: {
       slug: {
-        resolve: (source) => slugify(source.name),
+        resolve: (source) => slugify(source.title),
       },
     },
   })
@@ -80,7 +80,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       path: slug,
       component: require.resolve("./src/templates/post.js"),
       context: {
-        eventID: post.id,
+        postID: post.id,
       },
     })
   })
