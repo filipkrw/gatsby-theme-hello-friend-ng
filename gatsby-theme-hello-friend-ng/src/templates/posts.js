@@ -2,12 +2,12 @@ import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 
 import Layout from "../components/layout"
-import PostList from "../components/post-list"
+import Posts from "../components/posts"
 
 const PostsTemplate = () => {
   const data = useStaticQuery(graphql`
     query {
-      allPost(sort: { fields: published_at, order: ASC }) {
+      allPost(sort: { fields: published_at, order: DESC }) {
         nodes {
           id
           title
@@ -22,7 +22,7 @@ const PostsTemplate = () => {
 
   return (
     <Layout>
-      <PostList posts={posts} />
+      <Posts posts={posts} />
     </Layout>
   )
 }

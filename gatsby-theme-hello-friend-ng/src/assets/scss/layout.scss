@@ -1,0 +1,12 @@
+@import "index";
+
+// Tied to body in _main.css and Gatsby doesn't allow adding
+// classes to the body tag.
+.dark-theme {
+  background-color: $dark-background;
+  color: $dark-color;
+}
+
+.container {
+  min-height: 100vh;
+}

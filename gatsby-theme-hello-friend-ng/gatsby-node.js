@@ -1,4 +1,5 @@
 const fs = require("fs")
+const slugify = require("slugify")
 
 // Make sure the data directory exists
 exports.onPreBootstrap = ({ reporter }, options) => {
@@ -10,6 +11,11 @@ exports.onPreBootstrap = ({ reporter }, options) => {
   }
 }
 
+// https://github.com/gatsbyjs/gatsby/pull/12671
+exports.onCreatePage = ({ actions, page }) => {
+  actions.createPage(page)
+}
+
 // Define the "Post" type
 exports.sourceNodes = ({ actions }) => {
   actions.createTypes(`
@@ -19,6 +25,7 @@ exports.sourceNodes = ({ actions }) => {
       published_at: Date! @dateformat @proxy(from: "published_at")
       body: String!
       slug: String!
+      tags: [String!]!
     }
   `)
 }
@@ -26,30 +33,21 @@ exports.sourceNodes = ({ actions }) => {
 // Define resolvers for custom fields
 exports.createResolvers = ({ createResolvers }, options) => {
   const basePath = options.basePath || "/"
-
-  // Quick-and-dirty helper to convert strings into URL-friendly slugs.
-  const slugify = (str) => {
-    const slug = str
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)+/g, "")
-
-    return `/${basePath}/${slug}`.replace(/\/\/+/g, "/")
-  }
+  const createPath = (slug) => `/${basePath}/${slug}`.replace(/\/\/+/g, "/")
 
   createResolvers({
     Post: {
       slug: {
-        resolve: (source) => slugify(source.title),
+        resolve: (source) => createPath(slugify(source.title.toLowerCase())),
       },
     },
   })
 }
 
-exports.createPages = async ({ actions, graphql, reporter }) => {
-  const basePath = "/"
+exports.createPages = async ({ actions, graphql, reporter }, options) => {
+  const basePath = options.basePath || "/"
 
-  // Set up the call to create the root page
+  // Create blog main page
   actions.createPage({
     path: basePath,
     component: require.resolve("./src/templates/posts.js"),
@@ -81,6 +79,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       component: require.resolve("./src/templates/post.js"),
       context: {
         postID: post.id,
+        readOtherPosts: options.readOtherPosts || false,
       },
     })
   })

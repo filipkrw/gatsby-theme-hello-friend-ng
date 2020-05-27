@@ -11,14 +11,17 @@ export const query = graphql`
       published_at(formatString: "MMMM DD YYYY")
       body
       slug
+      tags
     }
   }
 `
 
-const PostTemplate = ({ data: { post } }) => (
-  <Layout>
-    <Post {...post} />
-  </Layout>
-)
+const PostTemplate = ({ data: { post }, pageContext }) => {
+  return (
+    <Layout>
+      <Post {...post} />
+    </Layout>
+  )
+}
 
 export default PostTemplate
