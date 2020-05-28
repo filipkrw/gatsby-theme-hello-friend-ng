@@ -9,7 +9,13 @@ exports.createPages = async ({ actions, graphql, reporter }, options) => {
     component: require.resolve("./src/templates/home.js"),
   })
 
-  // Creating post pages
+  // Creating main blog page
+  actions.createPage({
+    path: `${options.basePath}/blog`.replace(/\/\/+/g, "/"),
+    component: require.resolve("./src/templates/posts.js"),
+  })
+
+  // Creating blog post pages
   const result = await graphql(`
     query {
       allFile(filter: { sourceInstanceName: { eq: "post" } }) {
@@ -17,6 +23,7 @@ exports.createPages = async ({ actions, graphql, reporter }, options) => {
           fields {
             slug
           }
+          id
         }
       }
     }
@@ -29,8 +36,8 @@ exports.createPages = async ({ actions, graphql, reporter }, options) => {
   result.data.allFile.nodes.forEach((node) => {
     actions.createPage({
       path: node.fields.slug,
-      component: require.resolve("./src/templates/home.js"),
-      context: { slug: node.fields.slug },
+      component: require.resolve("./src/templates/post.js"),
+      context: { id: node.id },
     })
   })
 }
