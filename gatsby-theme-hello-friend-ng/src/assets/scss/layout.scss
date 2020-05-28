@@ -1,5 +1,11 @@
 @import "index";
 
+$media-size-not-phone: "(min-width: 685px)";
+
+:root {
+  --notPhoneWidth: (min-width: 685px);
+}
+
 // Tied to body in _main.css and Gatsby doesn't allow adding
 // classes to the body tag.
 .dark-theme {
@@ -18,3 +24,9 @@ a.social-icon {
     margin-right: 0;
   }
 }
+
+// .menu-trigger {
+//   @media #{$media-size-not-phone} {
+//     display: none;
+//   }
+// }

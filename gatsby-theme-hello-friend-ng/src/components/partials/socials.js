@@ -4,8 +4,9 @@ import SocialIcon from "../icons/social"
 const Socials = ({ socials }) => {
   return (
     <div>
-      {socials.map((social) => (
+      {socials.map((social, i) => (
         <a
+          key={i}
           href={social.url}
           target="_blank"
           rel="noreferrer"

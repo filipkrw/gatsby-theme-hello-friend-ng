@@ -1,8 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
 
-import PostImage from "./partials/post-image"
-
 import ClockIcon from "./icons/clock"
 import NotepadIcon from "./icons/notepad"
 import TagIcon from "./icons/tag"
