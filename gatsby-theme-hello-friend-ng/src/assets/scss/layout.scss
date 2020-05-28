@@ -10,3 +10,11 @@
 .container {
   min-height: 100vh;
 }
+
+a.social-icon {
+  margin-right: 15px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}

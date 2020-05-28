@@ -3,14 +3,24 @@ module.exports = ({ contentPath = "content", basePath = "/" }) => ({
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        path: contentPath,
+        name: "home",
+        path: `${contentPath}/home.mdx`,
       },
     },
     {
-      resolve: "gatsby-transformer-yaml",
+      resolve: "gatsby-source-filesystem",
       options: {
-        typeName: "Post",
+        name: "post",
+        path: `${contentPath}/posts`,
       },
     },
+    "gatsby-plugin-mdx",
+    // {
+    //   resolve: "gatsby-transformer-yaml",
+    //   options: {
+    //     typeName: "Post",
+    //     path: contentPath,
+    //   },
+    // },
   ],
 })
