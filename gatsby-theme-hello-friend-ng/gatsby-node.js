@@ -2,16 +2,22 @@ const fs = require("fs")
 const path = require("path")
 const mkdirp = require("mkdirp")
 
-exports.createPages = async ({ actions, graphql, reporter }, options) => {
-  // Creating homepage
+exports.createPages = async ({ actions, graphql, reporter }, { basePath }) => {
+  // Creating home page
   actions.createPage({
-    path: options.basePath || "/",
+    path: basePath || "/",
     component: require.resolve("./src/templates/home.js"),
+  })
+
+  // Creating works page
+  actions.createPage({
+    path: `${basePath}/works`.replace(/\/\/+/g, "/"),
+    component: require.resolve("./src/templates/works.js"),
   })
 
   // Creating main blog page
   actions.createPage({
-    path: `${options.basePath}/blog`.replace(/\/\/+/g, "/"),
+    path: `${basePath}/blog`.replace(/\/\/+/g, "/"),
     component: require.resolve("./src/templates/posts.js"),
   })
 
@@ -42,14 +48,14 @@ exports.createPages = async ({ actions, graphql, reporter }, options) => {
   })
 }
 
-exports.onCreateNode = ({ node, actions }, options) => {
+exports.onCreateNode = ({ node, actions }, { basePath }) => {
   if (node.internal.type !== "File") {
     return
   }
 
   const toPostPath = (node) => {
     const { dir } = path.parse(node.relativePath)
-    const basePath = options.basePath || "/"
+    basePath = basePath || "/"
 
     return path.join(`${basePath}/blog`.replace(/\/\/+/g, "/"), dir, node.name)
   }
@@ -62,9 +68,7 @@ exports.onCreateNode = ({ node, actions }, options) => {
   })
 }
 
-exports.onPreBootstrap = ({ reporter }, options) => {
-  const contentPath = options.contentPath
-
+exports.onPreBootstrap = ({ reporter }, { contentPath }) => {
   if (!fs.existsSync(contentPath)) {
     reporter.info(`creating the ${contentPath} directory`)
     fs.mkdirSync(contentPath)

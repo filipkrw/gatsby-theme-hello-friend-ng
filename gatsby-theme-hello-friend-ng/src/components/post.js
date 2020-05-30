@@ -10,18 +10,20 @@ const Post = ({ title, published_at, body, tags, words, readTime }) => (
   <main className="post">
     <div className="post-info">
       <p>
-        <ClockIcon />
-        {readTime} minute read
-        <Link to="#">
-          <span className="flag flag-icon flag-icon-gb flag-icon-squared"></span>
-        </Link>
+        {readTime && (
+          <>
+            <ClockIcon />
+            {readTime} minute read
+            <Link to="#">
+              <span className="flag flag-icon flag-icon-gb flag-icon-squared"></span>
+            </Link>
+          </>
+        )}
       </p>
     </div>
 
     <article>
       <h1 className="post-title">{title}</h1>
-      <hr />
-
       <div className="post-content">{body}</div>
     </article>
 

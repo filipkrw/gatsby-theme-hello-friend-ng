@@ -27,20 +27,6 @@ export const query = graphql`
 `
 
 const PostsTemplate = ({ data }) => {
-  // const data = useStaticQuery(graphql`
-  //   query {
-  //     allPost(sort: { fields: published_at, order: DESC }) {
-  //       nodes {
-  //         id
-  //         title
-  //         published_at
-  //         body
-  //         slug
-  //       }
-  //     }
-  //   }
-  // `)
-  // const posts = data.allPost.nodes
   const nodes = data.allFile.nodes
   const posts = nodes.map((node) => ({
     ...node.childMdx.frontmatter,

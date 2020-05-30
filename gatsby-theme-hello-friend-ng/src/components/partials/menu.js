@@ -25,10 +25,10 @@ const Menu = () => {
       <nav className={showMenu ? "menu" : "hidden"}>
         <ul className="menu__inner">
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/blog">Blog</Link>
           </li>
           <li>
-            <Link to="/blog">Blog</Link>
+            <Link to="/works">Works</Link>
           </li>
         </ul>
       </nav>
@@ -46,12 +46,12 @@ const Menu = () => {
 function useIsMobile() {
   /*
     Returns true if the site is viewed on mobile, based on the media query
-    saved as a variable in src/assets/scss/_variables.scss.
+    saved as "--phoneWidth" in src/assets/scss/_variables.scss.
   */
   const mobileQuery = getComputedStyle(document.body).getPropertyValue(
-    "--notPhoneWidth"
+    "--phoneWidth"
   )
-  const isMobile = () => !window.matchMedia(mobileQuery).matches
+  const isMobile = () => window.matchMedia(mobileQuery).matches
 
   const [mobile, setMobile] = useState(isMobile())
 
