@@ -1,17 +1,23 @@
-module.exports = ({ contentPath = "content", basePath = "/" }) => ({
+module.exports = ({ contentPath = "content", blogPath = "blog" }) => ({
   plugins: [
-    {
-      resolve: "gatsby-source-filesystem",
-      options: { name: "home", path: `${contentPath}/home.mdx` },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: { name: "works", path: `${contentPath}/works.mdx` },
-    },
     {
       resolve: "gatsby-source-filesystem",
       options: { name: "post", path: `${contentPath}/posts` },
     },
-    "gatsby-plugin-mdx",
+    {
+      resolve: "gatsby-plugin-mdx",
+      options: {
+        defaultLayouts: {
+          index: require.resolve("./src/components/layout.js"),
+          default: require.resolve("./src/components/post-layout.js"),
+        },
+      },
+    },
+    {
+      resolve: "gatsby-plugin-page-creator",
+      options: {
+        path: `${contentPath}/pages`,
+      },
+    },
   ],
 })

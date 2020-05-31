@@ -12,7 +12,7 @@ export const query = graphql`
     ) {
       nodes {
         fields {
-          slug
+          path
         }
         childMdx {
           frontmatter {

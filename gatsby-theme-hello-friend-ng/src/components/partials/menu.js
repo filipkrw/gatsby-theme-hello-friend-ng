@@ -25,7 +25,7 @@ const Menu = () => {
       <nav className={showMenu ? "menu" : "hidden"}>
         <ul className="menu__inner">
           <li>
-            <Link to="/blog">Blog</Link>
+            <Link to="/posts">Blog</Link>
           </li>
           <li>
             <Link to="/works">Works</Link>

@@ -1,13 +1,15 @@
 import React from "react"
 import { Link } from "gatsby"
 
+import PostLayout from "./post-layout"
+
 import ClockIcon from "./icons/clock"
 import NotepadIcon from "./icons/notepad"
 import TagIcon from "./icons/tag"
 import CalendarIcon from "./icons/calendar"
 
 const Post = ({ title, published_at, body, tags, words, readTime }) => (
-  <main className="post">
+  <PostLayout>
     <div className="post-info">
       <p>
         {readTime && (
@@ -53,7 +55,7 @@ const Post = ({ title, published_at, body, tags, words, readTime }) => (
         })}
       </p>
     </div>
-  </main>
+  </PostLayout>
 )
 
 export default Post

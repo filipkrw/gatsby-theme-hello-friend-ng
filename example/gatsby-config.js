@@ -4,7 +4,7 @@ module.exports = {
       resolve: "gatsby-theme-hello-friend-ng",
       options: {
         contentPath: "content",
-        basePath: "/",
+        blogPath: "posts",
       },
     },
   ],

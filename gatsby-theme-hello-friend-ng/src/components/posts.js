@@ -16,7 +16,7 @@ const Posts = ({ posts }) => {
         <ul className="posts-list">
           {posts.map((post) => (
             <li className="post-item" key={post.id}>
-              <Link to={post.slug}>
+              <Link to={post.path}>
                 <span className="post-title">{post.title}</span>
                 <span className="post-day">
                   {new Date(post.published_at).toLocaleDateString("en-GB", {
