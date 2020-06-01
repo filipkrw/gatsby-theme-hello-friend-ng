@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useStaticQuery, graphql } from "gatsby"
 import Cookies from "js-cookie"
 
 import Header from "./partials/header"
@@ -7,18 +8,39 @@ import Footer from "./partials/footer"
 import "./layout.css"
 
 const Layout = ({ children }) => {
-  const [mode, setMode] = useState(Cookies.get("mode"))
+  const data = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          helloFriendNG {
+            mode {
+              default
+              allowChange
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  const allowChange = data.site.siteMetadata.helloFriendNG.mode.allowChange
+  const defaultMode =
+    allowChange && Cookies.get("hello-friend-ng-mode")
+      ? Cookies.get("hello-friend-ng-mode")
+      : data.site.siteMetadata.helloFriendNG.mode.default
+
+  const [mode, setMode] = useState(defaultMode)
 
   const toggleDarkMode = () => {
     const newMode = mode === "light" ? "dark" : "light"
-    Cookies.set("mode", newMode)
+    Cookies.set("hello-friend-ng-mode", newMode)
     setMode(newMode)
   }
 
   return (
     <div className={mode === "dark" && "dark-theme"}>
       <div className={"container"}>
-        <Header toggleDarkMode={toggleDarkMode} />
+        <Header toggleDarkMode={toggleDarkMode} allowChange={allowChange} />
         <div className={"content"}>{children}</div>
         <Footer />
       </div>

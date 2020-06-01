@@ -5,6 +5,10 @@ module.exports = {
       options: {
         contentPath: "content",
         blogPath: "posts",
+        mode: {
+          default: "dark",
+          allowChange: true,
+        },
         menuLinks: [
           {
             name: "Blog",

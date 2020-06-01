@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 
+import MenuLinksTemplate from "../../templates/menu-links"
 import HamburgerMenuIcon from "../icons/hamburger-menu"
 
-const Menu = ({ items }) => {
+const Menu = ({ spaceForThemeToggler }) => {
   const isMobile = useIsMobile()
 
   const [showMenu, setShowMenu] = useState(!isMobile)
@@ -23,13 +24,12 @@ const Menu = ({ items }) => {
   return (
     <>
       <nav className={showMenu ? "menu" : "hidden"}>
-        <ul className="menu__inner">
-          {items &&
-            items.map((item) => (
-              <li>
-                <Link to={item.link}>{item.name}</Link>
-              </li>
-            ))}
+        <ul
+          className={
+            spaceForThemeToggler ? "menu__inner" : "menu__inner stretch"
+          }
+        >
+          <MenuLinksTemplate />
         </ul>
       </nav>
 

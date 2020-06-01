@@ -1,6 +1,6 @@
 @import "index";
 
-// Tied to body in _main.css and Gatsby doesn't allow adding
+// Was tied to body in _main.css and Gatsby doesn't allow adding
 // classes to the body tag.
 .dark-theme {
   background-color: $dark-background;
@@ -33,4 +33,28 @@ a.social-icon {
   border-top: 1px dashed $light-border-color;
   padding-top: 25px;
   margin-top: 30px;
+}
+
+// Menu links and theme toggle
+.menu {
+  margin-right: 0;
+  border-right: none;
+}
+
+.menu__inner.stretch {
+  padding-right: 0;
+
+  li:last-child {
+    margin-right: 0;
+  }
+}
+
+.theme-toggle {
+  padding-left: 18px;
+  border-left: 1px solid;
+
+  @media #{$media-size-phone} {
+    padding-left: 0;
+    border-left: none;
+  }
 }

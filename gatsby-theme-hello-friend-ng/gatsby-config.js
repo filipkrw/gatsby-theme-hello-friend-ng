@@ -1,6 +1,7 @@
 module.exports = ({
   contentPath = "content",
   blogPath = "blog",
+  mode = { default: "dark", allowChange: true },
   menuLinks = [
     {
       name: "Blog",
@@ -10,6 +11,9 @@ module.exports = ({
 }) => ({
   siteMetadata: {
     menuLinks,
+    helloFriendNG: {
+      mode,
+    },
   },
   plugins: [
     {

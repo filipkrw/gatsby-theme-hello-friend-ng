@@ -1,9 +1,9 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-import Menu from "../components/partials/menu"
+import MenuLinks from "../components/partials/menu-links"
 
-const MenuTemplate = () => {
+const MenuLinksTemplate = () => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -17,7 +17,7 @@ const MenuTemplate = () => {
     }
   `)
 
-  return <Menu items={data.site.siteMetadata.menuLinks} />
+  return <MenuLinks items={data.site.siteMetadata.menuLinks} />
 }
 
-export default MenuTemplate
+export default MenuLinksTemplate

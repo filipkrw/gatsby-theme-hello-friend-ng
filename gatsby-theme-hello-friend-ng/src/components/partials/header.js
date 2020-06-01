@@ -1,21 +1,24 @@
 import React from "react"
-import Logo from "./logo"
+import { useStaticQuery, graphql } from "gatsby"
 
-import MenuTemplate from "../../templates/menu"
+import Logo from "./logo"
+import Menu from "./menu"
 import ThemeIcon from "../icons/theme"
 
-const Header = ({ toggleDarkMode, menuLinks }) => {
+const Header = ({ toggleDarkMode, allowChange }) => {
   return (
     <header className="header">
       <span className="header__inner">
         <Logo />
 
         <span className="header__right">
-          <MenuTemplate />
+          <Menu spaceForThemeToggler={allowChange} />
 
-          <span className="theme-toggle unselectable">
-            <ThemeIcon onClick={toggleDarkMode} />
-          </span>
+          {allowChange && (
+            <span className="theme-toggle unselectable">
+              <ThemeIcon onClick={toggleDarkMode} />
+            </span>
+          )}
         </span>
       </span>
     </header>
