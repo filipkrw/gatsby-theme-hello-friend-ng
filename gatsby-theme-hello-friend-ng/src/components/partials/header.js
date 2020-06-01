@@ -1,8 +1,7 @@
 import React from "react"
-
 import Logo from "./logo"
 import Menu from "./menu"
-import ThemeIcon from "./icons/theme"
+import ThemeIcon from "../icons/theme"
 
 const Header = ({ toggleDarkMode }) => {
   return (

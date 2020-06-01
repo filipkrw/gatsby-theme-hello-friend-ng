@@ -8,7 +8,6 @@ module.exports = ({ contentPath = "content", blogPath = "blog" }) => ({
       resolve: "gatsby-plugin-mdx",
       options: {
         defaultLayouts: {
-          index: require.resolve("./src/components/layout.js"),
           default: require.resolve("./src/components/post-layout.js"),
         },
       },

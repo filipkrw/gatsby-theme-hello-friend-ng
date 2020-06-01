@@ -1,15 +1,13 @@
 import React from "react"
 import { Link } from "gatsby"
 
-import PostLayout from "./post-layout"
-
 import ClockIcon from "./icons/clock"
 import NotepadIcon from "./icons/notepad"
 import TagIcon from "./icons/tag"
 import CalendarIcon from "./icons/calendar"
 
 const Post = ({ title, published_at, body, tags, words, readTime }) => (
-  <PostLayout>
+  <>
     <div className="post-info">
       <p>
         {readTime && (
@@ -29,9 +27,7 @@ const Post = ({ title, published_at, body, tags, words, readTime }) => (
       <div className="post-content">{body}</div>
     </article>
 
-    <hr />
-
-    <div className="post-info">
+    <div className="post-info with-dashed-border">
       <p>
         <TagIcon />
         {tags.map((tag) => (
@@ -55,7 +51,7 @@ const Post = ({ title, published_at, body, tags, words, readTime }) => (
         })}
       </p>
     </div>
-  </PostLayout>
+  </>
 )
 
 export default Post

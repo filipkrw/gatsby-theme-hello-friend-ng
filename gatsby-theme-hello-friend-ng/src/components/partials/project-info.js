@@ -2,7 +2,7 @@ import React from "react"
 import TagIcon from "../icons/tag"
 import ExternalLinkIcon from "../icons/external-link"
 
-const ProjectLinks = ({ tags, links }) => {
+const ProjectInfo = ({ tags, links }) => {
   return (
     <div className="post-info project-info">
       <p>
@@ -29,4 +29,4 @@ const ProjectLinks = ({ tags, links }) => {
   )
 }
 
-export default ProjectLinks
+export default ProjectInfo

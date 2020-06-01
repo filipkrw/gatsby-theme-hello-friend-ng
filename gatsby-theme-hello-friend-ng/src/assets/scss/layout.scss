@@ -20,11 +20,17 @@ a.social-icon {
 }
 
 .project-info {
-  border-bottom: 1px dashed grey;
+  border-bottom: 1px dashed $light-border-color;
   padding-bottom: 25px;
 
   &:last-child {
     border-bottom: none;
     padding-bottom: 0;
   }
+}
+
+.post-info.with-dashed-border {
+  border-top: 1px dashed $light-border-color;
+  padding-top: 25px;
+  margin-top: 30px;
 }

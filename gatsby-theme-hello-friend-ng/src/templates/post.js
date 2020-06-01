@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
-import Layout from "../components/layout"
+import PostLayout from "../components/post-layout"
 import Post from "../components/post"
 
 export const query = graphql`
@@ -14,6 +14,7 @@ export const query = graphql`
           title
           tags
         }
+        timeToRead
         wordCount {
           words
         }
@@ -26,7 +27,7 @@ export const query = graphql`
 const PostTemplate = ({ data, pageContext }) => {
   const body = <MDXRenderer>{data.file.childMdx.body}</MDXRenderer>
   const words = data.file.childMdx.wordCount.words
-  const readTime = Math.max(1, Math.round(words / 200))
+  const readTime = data.file.childMdx.timeToRead
 
   const post = {
     ...data.file.childMdx.frontmatter,
@@ -36,9 +37,9 @@ const PostTemplate = ({ data, pageContext }) => {
   }
 
   return (
-    <Layout>
+    <PostLayout>
       <Post {...post} />
-    </Layout>
+    </PostLayout>
   )
 }
 
