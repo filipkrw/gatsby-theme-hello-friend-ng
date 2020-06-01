@@ -1,4 +1,16 @@
-module.exports = ({ contentPath = "content", blogPath = "blog" }) => ({
+module.exports = ({
+  contentPath = "content",
+  blogPath = "blog",
+  menuLinks = [
+    {
+      name: "Blog",
+      link: `/${blogPath}`,
+    },
+  ],
+}) => ({
+  siteMetadata: {
+    menuLinks,
+  },
   plugins: [
     {
       resolve: "gatsby-source-filesystem",

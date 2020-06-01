@@ -1,16 +1,17 @@
 import React from "react"
 import Logo from "./logo"
-import Menu from "./menu"
+
+import MenuTemplate from "../../templates/menu"
 import ThemeIcon from "../icons/theme"
 
-const Header = ({ toggleDarkMode }) => {
+const Header = ({ toggleDarkMode, menuLinks }) => {
   return (
     <header className="header">
       <span className="header__inner">
         <Logo />
 
         <span className="header__right">
-          <Menu />
+          <MenuTemplate />
 
           <span className="theme-toggle unselectable">
             <ThemeIcon onClick={toggleDarkMode} />

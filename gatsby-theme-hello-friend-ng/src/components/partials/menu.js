@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 
 import HamburgerMenuIcon from "../icons/hamburger-menu"
 
-const Menu = () => {
+const Menu = ({ items }) => {
   const isMobile = useIsMobile()
 
   const [showMenu, setShowMenu] = useState(!isMobile)
@@ -24,12 +24,12 @@ const Menu = () => {
     <>
       <nav className={showMenu ? "menu" : "hidden"}>
         <ul className="menu__inner">
-          <li>
-            <Link to="/posts">Blog</Link>
-          </li>
-          <li>
-            <Link to="/works">Works</Link>
-          </li>
+          {items &&
+            items.map((item) => (
+              <li>
+                <Link to={item.link}>{item.name}</Link>
+              </li>
+            ))}
         </ul>
       </nav>
 

@@ -5,6 +5,16 @@ module.exports = {
       options: {
         contentPath: "content",
         blogPath: "posts",
+        menuLinks: [
+          {
+            name: "Blog",
+            link: `/posts`,
+          },
+          {
+            name: "Works",
+            link: `/works`,
+          },
+        ],
       },
     },
   ],
