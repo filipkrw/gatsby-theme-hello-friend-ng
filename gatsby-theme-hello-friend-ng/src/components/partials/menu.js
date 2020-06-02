@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import { Link } from "gatsby"
 
 import MenuLinksTemplate from "../../templates/menu-links"
 import HamburgerMenuIcon from "../icons/hamburger-menu"

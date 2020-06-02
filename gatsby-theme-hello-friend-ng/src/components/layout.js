@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Cookies from "js-cookie"
 
 import Header from "./partials/header"
-import Footer from "./partials/footer"
+import FooterTemplate from "../templates/footer"
 
 import "./layout.css"
 
@@ -42,7 +42,7 @@ const Layout = ({ children }) => {
       <div className={"container"}>
         <Header toggleDarkMode={toggleDarkMode} allowChange={allowChange} />
         <div className={"content"}>{children}</div>
-        <Footer />
+        <FooterTemplate />
       </div>
     </div>
   )
