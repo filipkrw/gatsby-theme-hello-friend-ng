@@ -5,7 +5,8 @@ import { useModeToggle } from "./hooks"
 import Header from "./partials/header"
 import FooterTemplate from "../templates/footer"
 
-import "./layout.css"
+import "../assets/css/layout.css"
+import "../assets/css/custom.css"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`

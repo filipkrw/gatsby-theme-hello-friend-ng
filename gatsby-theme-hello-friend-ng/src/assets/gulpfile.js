@@ -12,9 +12,9 @@ gulp.task("scss", function () {
     .pipe(sourcemaps.init())
     .pipe(sass().on("error", sass.logError))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest("../components/"))
+    .pipe(gulp.dest("css/"))
 })
 
-gulp.task("sass:watch", function () {
+gulp.task("scss:watch", function () {
   gulp.watch("scss/", gulp.series("scss"))
 })
