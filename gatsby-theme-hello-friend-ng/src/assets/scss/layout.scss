@@ -20,7 +20,7 @@ a.social-icon {
 }
 
 .project-info {
-  border-bottom: 1px dashed $light-border-color;
+  border-bottom: 1px solid #bbb;
   padding-bottom: 25px;
 
   &:last-child {
@@ -29,10 +29,23 @@ a.social-icon {
   }
 }
 
+.dark-theme {
+  .project-info {
+    border-bottom-color: #777;
+  }
+}
+
 .post-info.with-dashed-border {
-  border-top: 1px dashed $light-border-color;
+  // border-top: 1px dashed $light-border-color;
+  border-top: 1px solid #bbb;
   padding-top: 25px;
   margin-top: 30px;
+}
+
+.dark-theme {
+  .post-info.with-dashed-border {
+    border-top-color: #777;
+  }
 }
 
 // Menu links and theme toggle
@@ -56,5 +69,32 @@ a.social-icon {
   @media #{$media-size-phone} {
     padding-left: 0;
     border-left: none;
+  }
+}
+
+pre {
+  color: rgb(77, 77, 76) !important;
+  background: rgb(244, 244, 244) !important;
+
+  code {
+    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    color: inherit;
+
+    &:first-child {
+      color: rgb(142, 144, 140);
+      padding-right: 25px !important;
+    }
+
+    &:last-child {
+      color: inherit;
+      padding-right: 0 !important;
+    }
+  }
+}
+
+.dark-theme {
+  pre {
+    color: rgb(197, 200, 198) !important;
+    background: rgb(29, 31, 33) !important;
   }
 }

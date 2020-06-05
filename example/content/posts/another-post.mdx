@@ -1,7 +1,24 @@
 ---
-title: Another post
+title: Post with code snippets
 published_at: 2020-04-03
-tags: [another-tag]
+tags: [code]
 ---
 
-Lorem ipsum dolor sit amet.
+import CodeHighlight from "gatsby-theme-hello-friend-ng/src/components/partials/code-highlight"
+
+JavaScript code with line numbers.
+
+<CodeHighlight
+  language="javascript"
+  showLineNumbers
+>{`result.data.allFile.nodes.forEach((node) => {
+  actions.createPage({
+    path: node.fields.path,
+    component: require.resolve("./src/templates/post.js"),
+    context: { id: node.id },
+  })
+})`}</CodeHighlight>
+
+Python code without line numbers.
+
+<CodeHighlight language="python">{`print("Hello World!")`}</CodeHighlight>

@@ -4,7 +4,7 @@ import Logo from "./logo"
 import Menu from "./menu"
 import ThemeIcon from "../icons/theme"
 
-const Header = ({ toggleDarkMode, allowChange }) => {
+const Header = ({ toggleMode, allowChange }) => {
   return (
     <header className="header">
       <span className="header__inner">
@@ -15,7 +15,7 @@ const Header = ({ toggleDarkMode, allowChange }) => {
 
           {allowChange && (
             <span className="theme-toggle unselectable">
-              <ThemeIcon onClick={toggleDarkMode} />
+              <ThemeIcon onClick={toggleMode} />
             </span>
           )}
         </span>

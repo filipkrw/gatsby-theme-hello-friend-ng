@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { useIsMobile } from "../hooks"
 
 import MenuLinksTemplate from "../../templates/menu-links"
 import HamburgerMenuIcon from "../icons/hamburger-menu"
@@ -40,27 +41,6 @@ const Menu = ({ spaceForThemeToggler }) => {
       </span>
     </>
   )
-}
-
-function useIsMobile() {
-  /*
-    Returns true if the site is viewed on mobile, based on the media query
-    saved as "--phoneWidth" in src/assets/scss/_variables.scss.
-  */
-  const mobileQuery = getComputedStyle(document.body).getPropertyValue(
-    "--phoneWidth"
-  )
-  const isMobile = () => window.matchMedia(mobileQuery).matches
-
-  const [mobile, setMobile] = useState(isMobile())
-
-  useEffect(() => {
-    const setMobileOnResize = () => setMobile(isMobile())
-    window.addEventListener("resize", setMobileOnResize)
-    return () => window.removeEventListener("resize", setMobileOnResize)
-  })
-
-  return mobile
 }
 
 export default Menu

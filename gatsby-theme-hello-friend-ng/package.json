@@ -25,6 +25,7 @@
     "gatsby-plugin-page-creator": "^2.3.7",
     "gatsby-source-filesystem": "^2.3.8",
     "js-cookie": "^2.2.1",
+    "react-syntax-highlighter": "^12.2.1",
     "slugify": "^1.4.0"
   }
 }

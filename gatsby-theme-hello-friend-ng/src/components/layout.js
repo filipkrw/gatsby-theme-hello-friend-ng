@@ -1,6 +1,6 @@
-import React, { useState } from "react"
+import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import Cookies from "js-cookie"
+import { useModeToggle } from "./hooks"
 
 import Header from "./partials/header"
 import FooterTemplate from "../templates/footer"
@@ -23,24 +23,16 @@ const Layout = ({ children }) => {
     }
   `)
 
-  const allowChange = data.site.siteMetadata.helloFriendNG.mode.allowChange
-  const defaultMode =
-    allowChange && Cookies.get("hello-friend-ng-mode")
-      ? Cookies.get("hello-friend-ng-mode")
-      : data.site.siteMetadata.helloFriendNG.mode.default
+  const [mode, toggleMode, allowChange] = useModeToggle(
+    data.site.siteMetadata.helloFriendNG.mode
+  )
 
-  const [mode, setMode] = useState(defaultMode)
-
-  const toggleDarkMode = () => {
-    const newMode = mode === "light" ? "dark" : "light"
-    Cookies.set("hello-friend-ng-mode", newMode)
-    setMode(newMode)
-  }
+  console.log("mode change")
 
   return (
-    <div className={mode === "dark" && "dark-theme"}>
+    <div className={mode === "dark" ? "dark-theme" : ""}>
       <div className={"container"}>
-        <Header toggleDarkMode={toggleDarkMode} allowChange={allowChange} />
+        <Header toggleMode={toggleMode} allowChange={allowChange} />
         <div className={"content"}>{children}</div>
         <FooterTemplate />
       </div>
