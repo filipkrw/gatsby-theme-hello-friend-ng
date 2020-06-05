@@ -4,19 +4,22 @@ module.exports = {
       resolve: "gatsby-theme-hello-friend-ng",
       options: {
         contentPath: "content",
-        blogPath: "posts",
+        blog: {
+          path: "posts",
+          title: "Posts",
+        },
         mode: {
           default: "dark",
           allowChange: true,
         },
         menuLinks: [
           {
-            name: "Blog",
-            link: `/posts`,
+            name: "Posts",
+            link: "/posts",
           },
           {
             name: "Works",
-            link: `/works`,
+            link: "/works",
           },
         ],
       },

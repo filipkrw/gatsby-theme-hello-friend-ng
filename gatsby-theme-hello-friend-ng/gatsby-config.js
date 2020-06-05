@@ -1,11 +1,14 @@
 module.exports = ({
   contentPath = "content",
-  blogPath = "blog",
+  blog = {
+    title: "Blog",
+    path: "blog",
+  },
   mode = { default: "dark", allowChange: true },
   menuLinks = [
     {
       name: "Blog",
-      link: `/${blogPath}`,
+      link: `/${blog.path}`,
     },
   ],
 }) => ({

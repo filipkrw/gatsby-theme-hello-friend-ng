@@ -4,12 +4,15 @@ const mkdirp = require("mkdirp")
 
 exports.createPages = async (
   { actions, graphql, reporter },
-  { blogPath = "blog" }
+  { blog = { title: "Blog", path: "blog" } }
 ) => {
   // Create main blog page
   actions.createPage({
-    path: blogPath,
+    path: blog.path,
     component: require.resolve("./src/templates/posts.js"),
+    context: {
+      title: blog.title,
+    },
   })
 
   // Create blog post pages
@@ -40,7 +43,10 @@ exports.createPages = async (
 }
 
 // Add path field to posts, to be able to link to them
-exports.onCreateNode = ({ node, actions }, { blogPath = "blog" }) => {
+exports.onCreateNode = (
+  { node, actions },
+  { blog = { title: "Blog", path: "blog" } }
+) => {
   if (node.internal.type !== "File") {
     return
   }
@@ -48,7 +54,7 @@ exports.onCreateNode = ({ node, actions }, { blogPath = "blog" }) => {
   actions.createNodeField({
     node,
     name: "path",
-    value: path.join(blogPath, node.name),
+    value: path.join(blog.path, node.name),
   })
 }
 
@@ -58,9 +64,9 @@ exports.onPreBootstrap = ({ reporter }, { contentPath = "content" }) => {
     fs.mkdirSync(contentPath)
   }
 
-  const postsPath = path.join(contentPath, "posts")
-  if (!fs.existsSync(postsPath)) {
-    reporter.info(`creating the ${postsPath} directory`)
-    fs.mkdirSync(postsPath)
+  const postsDirPath = path.join(contentPath, "posts")
+  if (!fs.existsSync(postsDirPath)) {
+    reporter.info(`creating the ${postsDirPath} directory`)
+    fs.mkdirSync(postsDirPath)
   }
 }

@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 
-const Posts = ({ posts }) => {
+const Posts = ({ title, posts }) => {
   const postsByYear = posts.reduce((groups, post) => {
     const year = new Date(post.published_at).getFullYear()
     // Map.prototype.set returns the whole Map object
@@ -34,7 +34,7 @@ const Posts = ({ posts }) => {
 
   return (
     <main className="posts">
-      <h1>Posts</h1>
+      <h1>{title}</h1>
       {postsJSX}
     </main>
   )

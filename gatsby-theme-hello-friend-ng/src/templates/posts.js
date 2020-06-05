@@ -26,7 +26,7 @@ export const query = graphql`
   }
 `
 
-const PostsTemplate = ({ data }) => {
+const PostsTemplate = ({ data, pageContext }) => {
   const nodes = data.allFile.nodes
   const posts = nodes.map((node) => ({
     ...node.childMdx.frontmatter,
@@ -36,7 +36,7 @@ const PostsTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <Posts posts={posts} />
+      <Posts posts={posts} title={pageContext.title} />
     </Layout>
   )
 }
