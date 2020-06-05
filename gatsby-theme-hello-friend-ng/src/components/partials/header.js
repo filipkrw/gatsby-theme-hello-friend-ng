@@ -1,6 +1,6 @@
 import React from "react"
 
-import Logo from "./logo"
+import LogoTemplate from "../../templates/logo"
 import Menu from "./menu"
 import ThemeIcon from "../icons/theme"
 
@@ -8,7 +8,7 @@ const Header = ({ toggleMode, allowChange }) => {
   return (
     <header className="header">
       <span className="header__inner">
-        <Logo />
+        <LogoTemplate />
 
         <span className="header__right">
           <Menu spaceForThemeToggler={allowChange} />
