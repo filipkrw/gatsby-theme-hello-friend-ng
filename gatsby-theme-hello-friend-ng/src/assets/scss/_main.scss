@@ -193,10 +193,10 @@ pre {
   font-size: 0.95rem;
   overflow: auto;
 
-  @media #{$media-size-phone} {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-  }
+  // @media #{$media-size-phone} {
+  //   white-space: pre-wrap;
+  //   word-wrap: break-word;
+  // }
 
   code {
     background: none !important;

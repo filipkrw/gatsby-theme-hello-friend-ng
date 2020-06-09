@@ -19,9 +19,15 @@ module.exports = ({
     },
   },
   plugins: [
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp",
     {
       resolve: "gatsby-source-filesystem",
       options: { name: "post", path: `${contentPath}/posts` },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: { name: "image", path: `${contentPath}/images` },
     },
     {
       resolve: "gatsby-plugin-mdx",

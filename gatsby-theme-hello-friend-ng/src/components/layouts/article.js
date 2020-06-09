@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React from "react"
 
 import LayoutCentered from "./centered"
 import { ThemeProvider } from "../../context/theme-context"

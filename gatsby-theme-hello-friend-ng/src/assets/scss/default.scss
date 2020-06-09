@@ -86,7 +86,7 @@ pre {
 
     &:last-child {
       color: inherit;
-      padding-right: 0 !important;
+      padding-right: 15px !important;
     }
   }
 }
@@ -94,5 +94,28 @@ pre {
 .dark-theme {
   pre {
     background: rgb(31, 33, 35) !important;
+  }
+}
+
+.image-rounded {
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 40px 0;
+
+  background: rgb(246, 246, 246);
+
+  &.wide {
+    margin: 40px -50px;
+    max-width: 860px;
+
+    @media #{$media-size-tablet} {
+      margin: 40px 0;
+    }
+  }
+}
+
+.dark-theme {
+  .image-rounded {
+    background: rgb(31, 33, 35);
   }
 }

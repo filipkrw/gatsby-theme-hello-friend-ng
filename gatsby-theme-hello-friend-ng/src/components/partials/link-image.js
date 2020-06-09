@@ -1,10 +1,10 @@
 import React from "react"
-import PostImage from "./post-image"
+import Image from "./image"
 
-const LinkImage = ({ src, url, title }) => {
+const LinkImage = ({ file, url, title, wide = false }) => {
   return (
     <a href={url} title={title} target="_blank" rel="noreferrer">
-      <PostImage src={src} alt={title} />
+      <Image file={file} alt={title} wide={wide} />
     </a>
   )
 }
