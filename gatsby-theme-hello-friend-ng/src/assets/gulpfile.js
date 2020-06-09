@@ -8,7 +8,7 @@ sass.compiler = require("node-sass")
 
 gulp.task("scss", function () {
   return gulp
-    .src("scss/layout.scss")
+    .src("scss/default.scss")
     .pipe(sourcemaps.init())
     .pipe(sass().on("error", sass.logError))
     .pipe(sourcemaps.write())

@@ -1,13 +1,20 @@
-import React from "react"
+import React, { useContext } from "react"
+
+import ThemeContext from "../../context/theme-context"
 
 import SyntaxHighlighter from "react-syntax-highlighter"
-import { solarizedLight } from "react-syntax-highlighter/dist/esm/styles/hljs"
+import {
+  tomorrow,
+  tomorrowNight,
+} from "react-syntax-highlighter/dist/esm/styles/hljs"
 
 const CodeHighlight = ({
   children,
   language = "text",
   showLineNumbers = false,
 }) => {
+  const { mode } = useContext(ThemeContext)
+
   const customStyle = {
     display: "flex",
     justifyContent: "flex-start",
@@ -17,7 +24,7 @@ const CodeHighlight = ({
   return (
     <SyntaxHighlighter
       language={language}
-      style={solarizedLight}
+      style={mode === "dark" ? tomorrowNight : tomorrow}
       customStyle={customStyle}
       showLineNumbers={showLineNumbers}
     >

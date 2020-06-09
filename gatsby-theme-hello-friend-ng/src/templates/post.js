@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
-import PostLayout from "../components/post-layout"
+import LayoutArticle from "../components/layouts/article"
 import Post from "../components/post"
 
 export const query = graphql`
@@ -37,9 +37,9 @@ const PostTemplate = ({ data, pageContext }) => {
   }
 
   return (
-    <PostLayout>
+    <LayoutArticle>
       <Post {...post} />
-    </PostLayout>
+    </LayoutArticle>
   )
 }
 

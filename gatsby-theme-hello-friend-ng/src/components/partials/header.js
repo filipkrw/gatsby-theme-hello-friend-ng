@@ -1,10 +1,14 @@
-import React from "react"
+import React, { useContext } from "react"
 
 import LogoTemplate from "../../templates/logo"
 import Menu from "./menu"
 import ThemeIcon from "../icons/theme"
 
-const Header = ({ toggleMode, allowChange }) => {
+import ThemeContext from "../../context/theme-context"
+
+const Header = () => {
+  const { toggleMode, allowChange } = useContext(ThemeContext)
+
   return (
     <header className="header">
       <span className="header__inner">

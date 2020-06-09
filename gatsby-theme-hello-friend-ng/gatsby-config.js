@@ -27,7 +27,7 @@ module.exports = ({
       resolve: "gatsby-plugin-mdx",
       options: {
         defaultLayouts: {
-          default: require.resolve("./src/components/post-layout.js"),
+          default: require.resolve("./src/components/layouts/article.js"),
         },
       },
     },

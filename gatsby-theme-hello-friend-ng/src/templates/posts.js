@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import Layout from "../components/layout"
+import LayoutMain from "../components/layouts/main"
 import Posts from "../components/posts"
 
 export const query = graphql`
@@ -35,9 +35,9 @@ const PostsTemplate = ({ data, pageContext }) => {
   }))
 
   return (
-    <Layout>
+    <LayoutMain>
       <Posts posts={posts} title={pageContext.title} />
-    </Layout>
+    </LayoutMain>
   )
 }
 
