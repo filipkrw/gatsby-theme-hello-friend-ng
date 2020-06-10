@@ -13,23 +13,54 @@ const Image = ({ file, alt, wide = false }) => {
           }
         }
       }
+      allFile(
+        filter: {
+          extension: { nin: ["jpg", "png"] }
+          sourceInstanceName: { eq: "image" }
+        }
+      ) {
+        nodes {
+          relativePath
+          publicURL
+        }
+      }
     }
   `)
 
-  const image = data.allImageSharp.nodes.find(
+  const className = wide ? "image-rounded wide" : "image-rounded"
+
+  /*
+    JPGs and PNGs, supported by gatsby-transformer-sharp
+  */
+  const imageSharp = data.allImageSharp.nodes.find(
     (node) => node.fluid.originalName === file
   )
 
-  const wideClass = wide ? "wide" : ""
+  if (imageSharp)
+    return (
+      <Img
+        fluid={imageSharp.fluid}
+        alt={alt}
+        className={className}
+        placeholderStyle={{ visibility: "hidden" }}
+      />
+    )
 
-  return image ? (
-    <Img
-      fluid={image.fluid}
-      alt={alt}
-      className={`image-rounded ${wideClass}`}
-      placeholderStyle={{ visibility: "hidden" }}
-    />
-  ) : null
+  /*
+    Other images like GIFs, unsupported by gatsby-transformer-sharp
+  */
+  const imageOther = data.allFile.nodes.find(
+    (node) => node.relativePath === file
+  )
+
+  if (imageOther)
+    return (
+      <div className={className}>
+        <img src={imageOther.publicURL} alt={alt} />
+      </div>
+    )
+
+  return null
 }
 
 export default Image
