@@ -21,4 +21,5 @@ $media-size-tablet: "(max-width: 900px)";
 :root {
   --phoneWidth: (max-width: 684px);
   --tabletWidth: (max-width: 900px);
+  --fullWidth: (min-width: 901px);
 }

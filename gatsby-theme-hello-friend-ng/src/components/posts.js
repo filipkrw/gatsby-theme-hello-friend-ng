@@ -11,7 +11,7 @@ const Posts = ({ title, posts }) => {
   const postsJSX = []
   postsByYear.forEach((posts, year) => {
     postsJSX.push(
-      <div className="posts-group">
+      <div className="posts-group" key={year}>
         <div className="post-year">{year}</div>
         <ul className="posts-list">
           {posts.map((post) => (

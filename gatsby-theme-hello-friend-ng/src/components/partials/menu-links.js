@@ -6,7 +6,7 @@ const MenuLinks = ({ items }) => {
     <>
       {items &&
         items.map((item) => (
-          <li>
+          <li key={item.name}>
             <Link to={item.link}>{item.name}</Link>
           </li>
         ))}

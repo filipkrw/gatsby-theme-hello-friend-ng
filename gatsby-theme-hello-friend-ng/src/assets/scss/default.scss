@@ -73,7 +73,7 @@ a.social-icon {
 }
 
 pre {
-  background: rgb(246, 246, 246) !important;
+  background: rgb(246, 244, 242) !important;
 
   code {
     font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
@@ -102,7 +102,10 @@ pre {
   overflow: hidden;
   margin: 40px 0;
 
-  background: rgb(246, 246, 246);
+  display: flex;
+  justify-content: center;
+
+  background: rgb(246, 244, 242);
 
   &.wide {
     margin: 40px -50px;
@@ -117,5 +120,56 @@ pre {
 .dark-theme {
   .image-rounded {
     background: rgb(31, 33, 35);
+  }
+}
+
+.lazy-load-image-background.opacity.lazy-load-image-loaded,
+.img-opacity-transition {
+  display: block !important;
+  transition: opacity 500ms ease 0s !important;
+}
+
+.outer-img-container {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.img-container {
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+
+  border-radius: 8px;
+  background: rgb(246, 244, 242);
+
+  > img,
+  span,
+  .gatsby-image-wrapper {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.dark-theme {
+  .img-container {
+    background: rgb(31, 33, 35);
+  }
+}
+
+.wide {
+  margin: 40px -50px;
+  max-width: 860px;
+
+  @media #{$media-size-tablet} {
+    margin: 40px 0;
   }
 }

@@ -1,6 +1,7 @@
 const fs = require("fs")
 const path = require("path")
 const mkdirp = require("mkdirp")
+const imageSize = require("image-size")
 
 exports.createPages = async (
   { actions, graphql, reporter },
@@ -42,20 +43,29 @@ exports.createPages = async (
   })
 }
 
-// Add path field to posts, to be able to link to them
 exports.onCreateNode = (
   { node, actions },
   { blog = { title: "Blog", path: "blog" } }
 ) => {
-  if (node.internal.type !== "File") {
-    return
-  }
+  if (node.internal.type === "File") {
+    // Path field to posts, to be able to link to them
+    if (node.sourceInstanceName === "post") {
+      actions.createNodeField({
+        node,
+        name: "path",
+        value: path.join(blog.path, node.name),
+      })
+    }
 
-  actions.createNodeField({
-    node,
-    name: "path",
-    value: path.join(blog.path, node.name),
-  })
+    // Image size field, to be able to neatly lazy load them
+    if (node.sourceInstanceName === "image") {
+      actions.createNodeField({
+        node,
+        name: "dimensions",
+        value: imageSize(node.absolutePath),
+      })
+    }
+  }
 }
 
 exports.onPreBootstrap = ({ reporter }, { contentPath = "content" }) => {

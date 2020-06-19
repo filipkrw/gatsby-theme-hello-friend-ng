@@ -1,6 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import { useModeToggle } from "../hooks"
+
+import useModeToggle from "../hooks/useModeToggle"
 
 const ThemeContext = React.createContext({})
 

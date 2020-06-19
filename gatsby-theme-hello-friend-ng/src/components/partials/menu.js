@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useIsMobile } from "../../hooks"
+import useIsMobile from "../../hooks/useIsMobile"
 
 import MenuLinksTemplate from "../../templates/menu-links"
 import HamburgerMenuIcon from "../icons/hamburger-menu"

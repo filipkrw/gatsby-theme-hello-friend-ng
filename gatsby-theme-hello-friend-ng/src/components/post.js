@@ -1,57 +1,68 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Link } from "gatsby"
+
+import MediaQueryContext from "../context/media-query-context"
 
 import ClockIcon from "./icons/clock"
 import NotepadIcon from "./icons/notepad"
 import TagIcon from "./icons/tag"
 import CalendarIcon from "./icons/calendar"
 
-const Post = ({ title, published_at, body, tags, words, readTime }) => (
-  <>
-    <div className="post-info">
-      <p>
-        {readTime && (
-          <>
-            <ClockIcon />
-            {readTime} minute read
-            <Link to="#">
-              <span className="flag flag-icon flag-icon-gb flag-icon-squared"></span>
-            </Link>
-          </>
-        )}
-      </p>
-    </div>
+const Post = ({ title, published_at, body, tags, words, readTime }) => {
+  const { mediaQueryMatch } = useContext(MediaQueryContext)
 
-    <article>
-      <h1 className="post-title">{title}</h1>
-      <div className="post-content">{body}</div>
-    </article>
+  // Make sure screen size is known before rendering, to compute placeholder
+  // sizes for images. It's always known beforhand, with an exception of when
+  // a post is loaded directly from a URL, not using React router.
+  if (typeof mediaQueryMatch === "undefined") return null
 
-    <div className="post-info with-dashed-border">
-      <p>
-        <TagIcon />
-        {tags.map((tag) => (
-          <span className="tag">
-            <Link to="#">{tag}</Link>
-          </span>
-        ))}
-      </p>
+  return (
+    <>
+      <div className="post-info">
+        <p>
+          {readTime && (
+            <>
+              <ClockIcon />
+              {readTime} minute read
+              <Link to="#">
+                <span className="flag flag-icon flag-icon-gb flag-icon-squared"></span>
+              </Link>
+            </>
+          )}
+        </p>
+      </div>
 
-      <p>
-        <NotepadIcon />
-        {words} words
-      </p>
+      <article>
+        <h1 className="post-title">{title}</h1>
+        <div className="post-content">{body}</div>
+      </article>
 
-      <p>
-        <CalendarIcon />
-        {new Date(published_at).toLocaleDateString("en-GB", {
-          month: "long",
-          day: "numeric",
-          year: "numeric",
-        })}
-      </p>
-    </div>
-  </>
-)
+      <div className="post-info with-dashed-border">
+        <p>
+          <TagIcon />
+          {tags.map((tag) => (
+            <span className="tag">
+              <Link to="#">{tag}</Link>
+            </span>
+          ))}
+        </p>
+
+        <p>
+          <NotepadIcon />
+          {words} words
+        </p>
+
+        <p>
+          <CalendarIcon />
+          {new Date(published_at).toLocaleDateString("en-GB", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          })}
+        </p>
+      </div>
+    </>
+  )
+}
 
 export default Post
