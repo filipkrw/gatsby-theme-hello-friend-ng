@@ -1,35 +1,13 @@
-import React, { useState, useEffect, useRef } from "react"
+import React from "react"
 
-import LayoutCentered from "./centered"
+import LayoutMain from "./main"
 
 const LayoutArticle = ({ children }) => {
-  const ref = useRef()
-
   return (
-    <LayoutCentered>
-      <main className="post" ref={ref}>
-        {children}
-      </main>
-    </LayoutCentered>
+    <LayoutMain>
+      <main className="post">{children}</main>
+    </LayoutMain>
   )
 }
-
-// const useContainerWidth = (ref) => {
-//   const [width, setWidth] = useState()
-//
-//   useEffect(() => {
-//     const handleSetWidth = () => {
-//       setWidth(ref.current.offsetWidth)
-//     }
-//
-//     if (ref.current) {
-//       handleSetWidth()
-//     }
-//     window.addEventListener("resize", handleSetWidth)
-//     return () => window.removeEventListener("resize", handleSetWidth)
-//   }, [ref])
-//
-//   return width
-// }
 
 export default LayoutArticle
