@@ -173,3 +173,11 @@ pre {
     margin: 40px 0;
   }
 }
+
+.footer__content > :not(:last-child)::after {
+  padding: 0 8px;
+}
+
+.footer__content > :last-child {
+  padding: 0;
+}
