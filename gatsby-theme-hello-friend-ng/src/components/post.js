@@ -39,20 +39,6 @@ const Post = ({ title, published_at, body, tags, words, readTime }) => {
 
       <div className="post-info with-dashed-border">
         <p>
-          <TagIcon />
-          {tags.map((tag) => (
-            <span className="tag">
-              <Link to="#">{tag}</Link>
-            </span>
-          ))}
-        </p>
-
-        <p>
-          <NotepadIcon />
-          {words} words
-        </p>
-
-        <p>
           <CalendarIcon />
           {new Date(published_at).toLocaleDateString("en-GB", {
             month: "long",
@@ -60,6 +46,24 @@ const Post = ({ title, published_at, body, tags, words, readTime }) => {
             year: "numeric",
           })}
         </p>
+
+        {words && (
+          <p>
+            <NotepadIcon />
+            {words} words
+          </p>
+        )}
+
+        {tags && (
+          <p>
+            <TagIcon />
+            {tags.map((tag) => (
+              <span className="tag">
+                <Link to="#">{tag}</Link>
+              </span>
+            ))}
+          </p>
+        )}
       </div>
     </>
   )
