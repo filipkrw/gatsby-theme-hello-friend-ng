@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react"
-import useIsMobile from "../../hooks/useIsMobile"
+import React, { useState, useEffect, useContext } from "react"
+
+import MediaQueryContext from "../../context/media-query-context"
 
 import MenuLinksTemplate from "../../templates/menu-links"
 import HamburgerMenuIcon from "../icons/hamburger-menu"
 
 const Menu = ({ spaceForThemeToggler }) => {
-  const isMobile = useIsMobile()
+  const { mediaQueryMatch } = useContext(MediaQueryContext)
+  const isMobile = mediaQueryMatch === "--phoneWidth"
 
   const [showMenu, setShowMenu] = useState(!isMobile)
   const [showMenuTrigger, setShowMenuTrigger] = useState(isMobile)
