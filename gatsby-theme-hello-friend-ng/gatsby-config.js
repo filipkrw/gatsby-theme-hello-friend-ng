@@ -13,9 +13,9 @@ module.exports = ({
   ],
 }) => ({
   siteMetadata: {
-    menuLinks,
     helloFriendNG: {
       mode,
+      menuLinks,
     },
   },
   plugins: [

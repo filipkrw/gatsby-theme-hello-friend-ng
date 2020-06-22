@@ -8,16 +8,18 @@ const MenuLinksTemplate = () => {
     query {
       site {
         siteMetadata {
-          menuLinks {
-            name
-            link
+          helloFriendNG {
+            menuLinks {
+              name
+              link
+            }
           }
         }
       }
     }
   `)
 
-  return <MenuLinks items={data.site.siteMetadata.menuLinks} />
+  return <MenuLinks items={data.site.siteMetadata.helloFriendNG.menuLinks} />
 }
 
 export default MenuLinksTemplate
