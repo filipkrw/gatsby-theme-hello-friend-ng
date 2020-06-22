@@ -25,14 +25,12 @@ const query = graphql`
       }
     ) {
       nodes {
-        fields {
-          dimensions {
-            height
-            width
-          }
-        }
         relativePath
         publicURL
+        imageSize {
+          width
+          height
+        }
       }
     }
   }
@@ -60,8 +58,8 @@ const Image = ({ file, alt, wide = false }) => {
   if (imageOther)
     return (
       <ImageOther
-        width={imageOther.fields.dimensions.width}
-        height={imageOther.fields.dimensions.height}
+        width={imageOther.imageSize.width}
+        height={imageOther.imageSize.height}
         src={imageOther.publicURL}
         alt={alt}
         wide={wide}
