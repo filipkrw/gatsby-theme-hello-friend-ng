@@ -8,12 +8,20 @@ import NotepadIcon from "./icons/notepad"
 import TagIcon from "./icons/tag"
 import CalendarIcon from "./icons/calendar"
 
-const Post = ({ title, published_at, body, tags, words, readTime }) => {
+const Post = ({
+  title,
+  published_at,
+  body,
+  tags,
+  show_word_count,
+  words,
+  readTime,
+}) => {
   const { mediaQueryMatch } = useContext(MediaQueryContext)
 
   // Make sure screen size is known before rendering, to compute placeholder
   // sizes for images. It's always known beforhand, with an exception of when
-  // a post is loaded directly from a URL, not using React router.
+  // a post is loaded directly from a URL, not using router.
   if (typeof mediaQueryMatch === "undefined") return null
 
   return (
@@ -47,7 +55,7 @@ const Post = ({ title, published_at, body, tags, words, readTime }) => {
           })}
         </p>
 
-        {words && (
+        {show_word_count && words && (
           <p>
             <NotepadIcon />
             {words} words
