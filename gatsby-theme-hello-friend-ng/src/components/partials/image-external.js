@@ -1,8 +1,6 @@
 import React from "react"
-import ImagePlaceholder from "./image-placeholder"
 import ImageOther from "./image-other"
 
-import { LazyLoadImage } from "react-lazy-load-image-component"
 import "react-lazy-load-image-component/src/effects/opacity.css"
 
 const ImageExternal = ({ src, alt, width, height, wide }) => {

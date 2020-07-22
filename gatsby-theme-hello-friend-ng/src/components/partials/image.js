@@ -1,9 +1,7 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import Img from "gatsby-image"
 
 import ImageOther from "./image-other"
-import ImagePlaceholder from "./image-placeholder"
 import ImageSharp from "./image-sharp"
 
 const query = graphql`
