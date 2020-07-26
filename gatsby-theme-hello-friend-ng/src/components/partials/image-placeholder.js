@@ -19,9 +19,7 @@ const ImagePlaceholder = ({ width, height, wide, children }) => {
   const getStyle = () => {
     const containerWidth = getContainerWidth(mediaQueryMatch, phoneWidth, wide)
     const finalWidth = Math.min(width, containerWidth)
-    const paddingBottom = Math.round(
-      aspectRatio * (finalWidth / containerWidth) * 100
-    )
+    const paddingBottom = aspectRatio * (finalWidth / containerWidth) * 100
 
     return {
       width: `${finalWidth}px`,
