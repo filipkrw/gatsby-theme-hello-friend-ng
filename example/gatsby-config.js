@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: "/gatsby-theme-hello-friend-ng",
   plugins: [
     {
       resolve: "gatsby-theme-hello-friend-ng",
