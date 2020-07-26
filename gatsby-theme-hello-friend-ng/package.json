@@ -1,8 +1,19 @@
 {
   "name": "gatsby-theme-hello-friend-ng",
+  "description": "Hello Friend NG theme for Gatsby",
+  "author": "Filip Krawczyk",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "keywords": [
+    "gatsby",
+    "theme"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atmhrt/gatsby-theme-hello-friend-ng.git"
+  },
+  "homepage": "https://github.com/atmhrt/gatsby-theme-hello-friend-ng",
   "scripts": {
     "build": "gatsby build",
     "clean": "gatsby clean",
