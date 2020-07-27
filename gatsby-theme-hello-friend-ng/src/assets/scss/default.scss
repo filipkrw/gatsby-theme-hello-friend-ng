@@ -181,3 +181,9 @@ pre {
 .footer__content > :last-child {
   padding: 0;
 }
+
+@media #{$media-size-tablet} {
+  .footer__content > :not(:last-child)::after {
+    padding: 0;
+  }
+}
