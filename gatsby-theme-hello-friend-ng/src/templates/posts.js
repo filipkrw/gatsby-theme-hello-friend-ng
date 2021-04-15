@@ -11,14 +11,14 @@ export const query = graphql`
       filter: { sourceInstanceName: { eq: "post" } }
     ) {
       nodes {
-        postInfo {
-          path
-        }
         childMdx {
           frontmatter {
             published_at
             title
           }
+        }
+        fields {
+          slug
         }
         id
       }
@@ -30,7 +30,7 @@ const PostsTemplate = ({ data, pageContext }) => {
   const nodes = data.allFile.nodes
   const posts = nodes.map((node) => ({
     ...node.childMdx.frontmatter,
-    ...node.postInfo,
+    ...node.fields,
     id: node.id,
   }))
 

@@ -12,10 +12,11 @@ const useModeToggle = (data) => {
   //     ? Cookies.get("hello-friend-ng-mode")
   //     : data.default
 
-  const defaultMode =
-    data.allowChange && localStorage.getItem("hello-friend-ng-mode")
-      ? localStorage.getItem("hello-friend-ng-mode")
-      : data.default
+   const defaultMode =
+      data.allowChange && typeof window !== 'undefined' && localStorage.getItem("hello-friend-ng-mode")
+        ? localStorage.getItem("hello-friend-ng-mode")
+        : data.default
+
 
   const [mode, setMode] = useState(defaultMode)
 

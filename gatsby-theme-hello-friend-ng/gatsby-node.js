@@ -2,6 +2,7 @@ const fs = require("fs")
 const path = require("path")
 const mkdirp = require("mkdirp")
 const imageSize = require("image-size")
+const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
@@ -46,6 +47,25 @@ exports.createResolvers = (
   })
 }
 
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions
+
+  if (node.sourceInstanceName === "post") {
+    const relativeFilePath = createFilePath({
+      node,
+      getNode,
+      basePath: "content/posts/",
+      trailingSlash: false
+    })
+
+    createNodeField({
+      node,
+      name: "slug",
+      value: `/posts${relativeFilePath}`,
+    })
+  }
+}
+
 exports.createPages = async (
   { actions, graphql, reporter },
   { blog = { title: "Blog", path: "blog" }, contentPath = "content" }
@@ -64,8 +84,8 @@ exports.createPages = async (
     query {
       allFile(filter: { sourceInstanceName: { eq: "post" } }) {
         nodes {
-          postInfo {
-            path
+          fields {
+            slug
           }
           id
         }
@@ -79,37 +99,12 @@ exports.createPages = async (
 
   result.data.allFile.nodes.forEach((node) => {
     actions.createPage({
-      path: node.postInfo.path,
+      path: node.fields.slug,
       component: require.resolve("./src/templates/post.js"),
       context: { id: node.id },
     })
   })
 }
-
-// exports.onCreateNode = (
-//   { node, actions },
-//   { blog = { title: "Blog", path: "blog" } }
-// ) => {
-//   if (node.internal.type === "File") {
-//     // Path field to posts, to be able to link to them
-//     if (node.sourceInstanceName === "post") {
-//       actions.createNodeField({
-//         node,
-//         name: "path",
-//         value: path.join(blog.path, node.name),
-//       })
-//     }
-//
-//     // Image size field, to be able to neatly lazy load them
-//     if (node.sourceInstanceName === "image") {
-//       actions.createNodeField({
-//         node,
-//         name: "dimensions",
-//         value: imageSize(node.absolutePath),
-//       })
-//     }
-//   }
-// }
 
 exports.onPreBootstrap = ({ reporter }, { contentPath = "content" }) => {
   const dirs = [
