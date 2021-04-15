@@ -47,28 +47,31 @@ exports.createResolvers = (
   })
 }
 
-exports.onCreateNode = ({ node, getNode, actions }) => {
+exports.onCreateNode = (
+  { node, getNode, actions },
+  { blog = { path: "blog" }, contentPath = "content" }
+  ) => {
   const { createNodeField } = actions
 
   if (node.sourceInstanceName === "post") {
     const relativeFilePath = createFilePath({
       node,
       getNode,
-      basePath: "content/posts/",
+      basePath: `${contentPath}/posts/`,
       trailingSlash: false
     })
 
     createNodeField({
       node,
       name: "slug",
-      value: `/posts${relativeFilePath}`,
+      value: `/${blog.path}${relativeFilePath}`,
     })
   }
 }
 
 exports.createPages = async (
   { actions, graphql, reporter },
-  { blog = { title: "Blog", path: "blog" }, contentPath = "content" }
+  { blog = { title: "Blog", path: "blog" } }
 ) => {
   // Create main blog page
   actions.createPage({
