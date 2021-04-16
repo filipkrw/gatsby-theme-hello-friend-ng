@@ -21,14 +21,14 @@ const ThemeProvider = ({ children }) => {
     }
   `)
 
-  const [mode, toggleMode, allowChange] = useModeToggle(
+  const [currentMode, toggleMode, allowChange] = useModeToggle(
     data.site.siteMetadata.helloFriendNG.mode
   )
 
   return (
     <ThemeContext.Provider
       value={{
-        mode,
+        currentMode,
         toggleMode,
         allowChange,
       }}

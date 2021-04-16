@@ -13,7 +13,7 @@ const CodeHighlight = ({
   language = "text",
   showLineNumbers = false,
 }) => {
-  const { mode } = useContext(ThemeContext)
+  const { currentMode } = useContext(ThemeContext)
 
   const customStyle = {
     display: "flex",
@@ -24,7 +24,7 @@ const CodeHighlight = ({
   return (
     <SyntaxHighlighter
       language={language}
-      style={mode === "dark" ? tomorrowNight : tomorrow}
+      style={currentMode === "dark" ? tomorrowNight : tomorrow}
       customStyle={customStyle}
       showLineNumbers={showLineNumbers}
     >

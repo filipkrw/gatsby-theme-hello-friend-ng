@@ -1,33 +1,36 @@
-import { useState } from "react"
-// import Cookies from "js-cookie"
+import { useState, useEffect } from "react"
+
+const toggleBodyClass = () => {
+  if (document.body.classList.contains('dark-theme')) {
+    document.body.classList.remove('dark-theme')
+    localStorage.setItem("hello-friend-ng-mode", "light")
+    return "light"
+  } else {
+    document.body.classList.add('dark-theme')
+    localStorage.setItem("hello-friend-ng-mode", "dark")
+    return "dark"
+  }
+}
 
 const useModeToggle = (data) => {
-  /*
-    Returns current theme mode ("light" or "dark"), theme mode toggle function
-    and a boolean for if the theme mode toggle is to be allowed.
-  */
-  const allowChange = data.allowChange
-  // const defaultMode =
-  //   data.allowChange && Cookies.get("hello-friend-ng-mode")
-  //     ? Cookies.get("hello-friend-ng-mode")
-  //     : data.default
-
-   const defaultMode =
-      data.allowChange && typeof window !== 'undefined' && localStorage.getItem("hello-friend-ng-mode")
-        ? localStorage.getItem("hello-friend-ng-mode")
-        : data.default
-
-
-  const [mode, setMode] = useState(defaultMode)
+  const [currentMode, setCurrentMode] = useState(document.body.classList.contains("dark-theme") ? "dark" : "light")
 
   const toggleMode = () => {
-    const newMode = mode === "light" ? "dark" : "light"
-    // Cookies.set("hello-friend-ng-mode", newMode)
-    localStorage.setItem("hello-friend-ng-mode", newMode)
-    setMode(newMode)
+    const newMode = toggleBodyClass()
+    setCurrentMode(newMode)
   }
 
-  return [mode, toggleMode, allowChange]
+  useEffect(() => {
+    // No saved theme mode preference in localStorage, and default mode is set to dark - add 'dark-theme' class to body
+    // Happens only on first load
+    if (typeof window !== 'undefined'
+        && !localStorage.getItem("hello-friend-ng-mode")
+        && data.default === "dark") {
+      toggleMode()
+    }
+  }, [])
+  
+  return [currentMode, toggleMode, data.allowChange]
 }
 
 export default useModeToggle

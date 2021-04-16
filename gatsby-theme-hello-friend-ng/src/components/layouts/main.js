@@ -9,18 +9,12 @@ import "../../assets/css/default.css"
 import "../../assets/css/custom.css"
 
 const LayoutMain = ({ children }) => {
-  const { mode } = useContext(ThemeContext)
-
   return (
-    <>
-      <div className={mode === "dark" ? "dark-theme" : ""}>
-        <div className="container">
-          <Header />
-          <div className="content">{children}</div>
-          <FooterTemplate />
-        </div>
-      </div>
-    </>
+    <div className="container">
+      <Header />
+      <div className="content">{children}</div>
+      <FooterTemplate />
+    </div>
   )
 }
 
