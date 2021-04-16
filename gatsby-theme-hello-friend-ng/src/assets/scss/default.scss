@@ -20,18 +20,23 @@ a.social-icon {
 }
 
 .project-info {
-  border-bottom: 1px solid #bbb;
+  border-bottom: 1px dashed grey;
   padding-bottom: 25px;
+  margin-top: 25px;
 
   &:last-child {
     border-bottom: none;
     padding-bottom: 0;
   }
+
+  p {
+    margin: 5px 0;
+  }
 }
 
 .dark-theme {
   .project-info {
-    border-bottom-color: #777;
+    border-bottom-color: grey;
   }
 }
 
@@ -39,7 +44,7 @@ a.social-icon {
   // border-top: 1px dashed $light-border-color;
   border-top: 1px solid #bbb;
   padding-top: 25px;
-  margin-top: 30px;
+  margin-top: 25px;
 }
 
 .dark-theme {
@@ -132,7 +137,7 @@ pre {
 .outer-img-container {
   display: flex;
   justify-content: center;
-  margin: 40px 0;
+  margin: 25px 0;
 
   border-radius: 8px;
   overflow: hidden;
