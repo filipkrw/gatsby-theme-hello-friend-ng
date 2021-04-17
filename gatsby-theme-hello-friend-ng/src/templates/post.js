@@ -4,6 +4,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import LayoutArticle from "../components/layouts/article"
 import Post from "../components/post"
+import SEO from "../components/seo"
 
 export const query = graphql`
   query($id: String!) {
@@ -29,6 +30,8 @@ const PostTemplate = ({ data, pageContext }) => {
   const words = data.file.childMdx.wordCount.words
   const readTime = data.file.childMdx.timeToRead
 
+  console.log(pageContext);
+
   const post = {
     ...data.file.childMdx.frontmatter,
     body,
@@ -38,6 +41,7 @@ const PostTemplate = ({ data, pageContext }) => {
 
   return (
     <LayoutArticle>
+      <SEO title={post.title} />
       <Post {...post} />
     </LayoutArticle>
   )

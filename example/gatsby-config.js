@@ -26,4 +26,7 @@ module.exports = {
       },
     },
   ],
+  siteMetadata: {
+    titleTemplate: "%s – Demo Page"
+  }
 }

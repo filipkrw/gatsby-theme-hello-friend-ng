@@ -7,6 +7,13 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
   const typeDefs = `
+    type Mdx implements Node {
+      frontmatter: MdxFrontmatter!
+    }
+    type MdxFrontmatter {
+      description: String
+      image: String
+    }
     type ImageSize {
       width: Int!
       height: Int!
@@ -42,7 +49,7 @@ exports.createResolvers = (
           }
           return null
         },
-      },
+      }
     },
   })
 }
@@ -52,6 +59,21 @@ exports.onCreateNode = (
   { blog = { path: "blog" }, contentPath = "content" }
   ) => {
   const { createNodeField } = actions
+
+  if (node.sourceInstanceName === "page") {
+    const relativeFilePath = createFilePath({
+      node,
+      getNode,
+      basePath: `${contentPath}/pages/`,
+      trailingSlash: false
+    })
+
+    createNodeField({
+      node,
+      name: "slug",
+      value: `${relativeFilePath}`,
+    })
+  }
 
   if (node.sourceInstanceName === "post") {
     const relativeFilePath = createFilePath({
@@ -96,14 +118,36 @@ exports.createPages = async (
     }
   `)
 
-  if (result.errors) {
-    reporter.panic("Error loading mdx files", result.errors)
-  }
+  if (result.errors) reporter.panic("Error loading mdx files", result.errors)
 
   result.data.allFile.nodes.forEach((node) => {
     actions.createPage({
       path: node.fields.slug,
       component: require.resolve("./src/templates/post.js"),
+      context: { id: node.id },
+    })
+  })
+
+  // Create general pages
+  const resultP = await graphql(`
+    query {
+      allFile(filter: { sourceInstanceName: { eq: "page" } }) {
+        nodes {
+          fields {
+            slug
+          },
+          id
+        }
+      }
+    }
+  `)
+
+  if (resultP.errors) reporter.panic("Error loading mdx files", resultP.errors)
+
+  resultP.data.allFile.nodes.forEach((node) => {
+    actions.createPage({
+      path: node.fields.slug,
+      component: require.resolve("./src/templates/page.js"),
       context: { id: node.id },
     })
   })

@@ -12,7 +12,7 @@ const ProjectInfo = ({ tags, links }) => {
       <p>
         <ExternalLinkIcon />
         {links.map((link, i) => (
-          <span>
+          <span key={i}>
             <a
               href={link.url}
               title={link.title}

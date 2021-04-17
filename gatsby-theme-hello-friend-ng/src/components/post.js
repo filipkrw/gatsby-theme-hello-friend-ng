@@ -65,8 +65,8 @@ const Post = ({
         {tags && (
           <p>
             <TagIcon />
-            {tags.map((tag) => (
-              <span className="tag">
+            {tags.map((tag, i) => (
+              <span className="tag" key={i}>
                 <Link to="#">{tag}</Link>
               </span>
             ))}

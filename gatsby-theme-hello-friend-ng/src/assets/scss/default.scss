@@ -20,7 +20,7 @@ a.social-icon {
 }
 
 .project-info {
-  border-bottom: 1px dashed grey;
+  border-bottom: 1px $dark-border-color dashed;
   padding-bottom: 25px;
   margin-top: 25px;
 
@@ -36,20 +36,20 @@ a.social-icon {
 
 .dark-theme {
   .project-info {
-    border-bottom-color: grey;
+    border-bottom-color: $light-border-color;
   }
 }
 
 .post-info.with-dashed-border {
-  // border-top: 1px dashed $light-border-color;
-  border-top: 1px solid #bbb;
+  border-top: 1px dashed $dark-border-color;
+  // border-top: 1px #808080 dashed;
   padding-top: 25px;
   margin-top: 25px;
 }
 
 .dark-theme {
   .post-info.with-dashed-border {
-    border-top-color: #777;
+    border-top-color: $light-border-color;
   }
 }
 

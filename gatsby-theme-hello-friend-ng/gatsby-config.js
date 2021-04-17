@@ -4,7 +4,10 @@ module.exports = ({
     title: "Blog",
     path: "blog",
   },
-  mode = { default: "dark", allowChange: true },
+  mode = {
+    default: "dark",
+    allowChange: true
+  },
   menuLinks = [
     {
       name: "Blog",
@@ -13,14 +16,24 @@ module.exports = ({
   ],
 }) => ({
   siteMetadata: {
+    title: "Hello Friend NG",
+    titleTemplate: "%s – Demo Site",
+    description: "",
+    url: "localhost:8000", // No trailing slash allowed!
+    image: "",
+    twitterUsername: "",
     helloFriendNG: {
       mode,
       menuLinks,
-    },
+      blog: {
+        title: blog.title
+      }
+    }
   },
   plugins: [
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
+    "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-source-filesystem",
       options: { name: "post", path: `${contentPath}/posts` },
@@ -30,6 +43,10 @@ module.exports = ({
       options: { name: "image", path: `${contentPath}/images` },
     },
     {
+      resolve: "gatsby-source-filesystem",
+      options: { name: "page", path: `${contentPath}/pages` },
+    },
+    {
       resolve: "gatsby-plugin-mdx",
       options: {
         defaultLayouts: {
@@ -37,11 +54,11 @@ module.exports = ({
         },
       },
     },
-    {
-      resolve: "gatsby-plugin-page-creator",
-      options: {
-        path: `${contentPath}/pages`,
-      },
-    },
+    // {
+    //   resolve: "gatsby-plugin-page-creator",
+    //   options: {
+    //     path: `${contentPath}/pages`,
+    //   },
+    // },
   ],
 })

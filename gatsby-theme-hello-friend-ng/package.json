@@ -7,13 +7,20 @@
   "license": "MIT",
   "keywords": [
     "gatsby",
-    "theme"
+    "gatsby-plugin",
+    "gatsby-theme",
+    "react",
+    "markdown",
+    "minimalistic",
+    "personal",
+    "blog",
+    "portfolio"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/atmhrt/gatsby-theme-hello-friend-ng.git"
+    "url": "git+https://github.com/filipkrw/gatsby-theme-hello-friend-ng.git"
   },
-  "homepage": "https://github.com/atmhrt/gatsby-theme-hello-friend-ng",
+  "homepage": "https://github.com/filipkrw/gatsby-theme-hello-friend-ng",
   "scripts": {
     "build": "gatsby build",
     "clean": "gatsby clean",
@@ -35,10 +42,12 @@
     "gatsby-image": "^3.3.0",
     "gatsby-plugin-mdx": "^2.3.0",
     "gatsby-plugin-page-creator": "^3.3.0",
+    "gatsby-plugin-react-helmet": "^4.3.0",
     "gatsby-plugin-sharp": "^3.3.0",
     "gatsby-source-filesystem": "^3.3.0",
     "gatsby-transformer-sharp": "^3.3.0",
     "image-size": "^1.0.0",
+    "react-helmet": "^6.1.0",
     "react-lazy-load-image-component": "^1.5.1",
     "react-syntax-highlighter": "^15.4.3",
     "slugify": "^1.5.0"

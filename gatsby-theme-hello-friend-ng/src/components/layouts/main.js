@@ -1,6 +1,5 @@
 import React, { useContext } from "react"
-
-import ThemeContext from "../../context/theme-context"
+import { Helmet } from "react-helmet"
 
 import Header from "../partials/header"
 import FooterTemplate from "../../templates/footer"
@@ -12,7 +11,9 @@ const LayoutMain = ({ children }) => {
   return (
     <div className="container">
       <Header />
-      <div className="content">{children}</div>
+      <div className="content">
+        {children}
+      </div>
       <FooterTemplate />
     </div>
   )

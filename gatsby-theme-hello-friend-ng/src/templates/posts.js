@@ -1,8 +1,10 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { Helmet } from "react-helmet"
 
 import LayoutMain from "../components/layouts/main"
 import Posts from "../components/posts"
+import SEO from "../components/seo"
 
 export const query = graphql`
   query {
@@ -36,6 +38,7 @@ const PostsTemplate = ({ data, pageContext }) => {
 
   return (
     <LayoutMain>
+      <SEO title={pageContext.title} />
       <Posts posts={posts} title={pageContext.title} />
     </LayoutMain>
   )
