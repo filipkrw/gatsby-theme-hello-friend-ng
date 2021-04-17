@@ -18,17 +18,11 @@ exports.createSchemaCustomization = ({ actions }) => {
       width: Int!
       height: Int!
     }
-    type PostInfo {
-      path: String!
-    }
   `
   createTypes(typeDefs)
 }
 
-exports.createResolvers = (
-  { createResolvers },
-  { blog = { path: "blog" } }
-) => {
+exports.createResolvers = ({ createResolvers }) => {
   createResolvers({
     File: {
       imageSize: {
@@ -40,53 +34,45 @@ exports.createResolvers = (
           }
           return null
         },
-      },
-      postInfo: {
-        type: "PostInfo",
-        resolve: (source) => {
-          if (source.sourceInstanceName === "post") {
-            return { path: path.join(blog.path, source.name) }
-          }
-          return null
-        },
       }
     },
   })
 }
 
+/*
+  Create slug fields for posts and regular pages
+*/
 exports.onCreateNode = (
   { node, getNode, actions },
   { blog = { path: "blog" }, contentPath = "content" }
   ) => {
   const { createNodeField } = actions
 
-  if (node.sourceInstanceName === "page") {
-    const relativeFilePath = createFilePath({
-      node,
-      getNode,
-      basePath: `${contentPath}/pages/`,
-      trailingSlash: false
-    })
-
-    createNodeField({
-      node,
-      name: "slug",
-      value: `${relativeFilePath}`,
-    })
+  const paths = {
+    page: {
+      basePath: `${contentPath}/pages`,
+      slugPrefix: ""
+    },
+    post: {
+      basePath: `${contentPath}/posts`,
+      slugPrefix: `/${blog.path}`
+    }
   }
 
-  if (node.sourceInstanceName === "post") {
+  if (Object.keys(paths).includes(node.sourceInstanceName)) {
+    const nodePaths = paths[node.sourceInstanceName]
+
     const relativeFilePath = createFilePath({
       node,
       getNode,
-      basePath: `${contentPath}/posts/`,
+      basePath: nodePaths.basePath,
       trailingSlash: false
     })
 
     createNodeField({
       node,
       name: "slug",
-      value: `/${blog.path}${relativeFilePath}`,
+      value: `${nodePaths.slugPrefix}${relativeFilePath}`,
     })
   }
 }
@@ -95,7 +81,9 @@ exports.createPages = async (
   { actions, graphql, reporter },
   { blog = { title: "Blog", path: "blog" } }
 ) => {
-  // Create main blog page
+  /*
+    Create main blog page
+  */
   actions.createPage({
     path: blog.path,
     component: require.resolve("./src/templates/posts.js"),
@@ -104,50 +92,30 @@ exports.createPages = async (
     },
   })
 
-  // Create blog post pages
+  /*
+    Create posts and regular pages
+  */
   const result = await graphql(`
     query {
-      allFile(filter: { sourceInstanceName: { eq: "post" } }) {
+      allFile(filter: { sourceInstanceName: { in: ["page", "post"] } }) {
         nodes {
           fields {
             slug
           }
           id
+          sourceInstanceName
         }
       }
     }
   `)
 
-  if (result.errors) reporter.panic("Error loading mdx files", result.errors)
+  if (result.errors)
+    reporter.panic("Error loading mdx files", result.errors)
 
   result.data.allFile.nodes.forEach((node) => {
     actions.createPage({
       path: node.fields.slug,
-      component: require.resolve("./src/templates/post.js"),
-      context: { id: node.id },
-    })
-  })
-
-  // Create general pages
-  const resultP = await graphql(`
-    query {
-      allFile(filter: { sourceInstanceName: { eq: "page" } }) {
-        nodes {
-          fields {
-            slug
-          },
-          id
-        }
-      }
-    }
-  `)
-
-  if (resultP.errors) reporter.panic("Error loading mdx files", resultP.errors)
-
-  resultP.data.allFile.nodes.forEach((node) => {
-    actions.createPage({
-      path: node.fields.slug,
-      component: require.resolve("./src/templates/page.js"),
+      component: require.resolve(`./src/templates/${node.sourceInstanceName}.js`),
       context: { id: node.id },
     })
   })
