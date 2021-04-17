@@ -4,13 +4,11 @@ import Footer from "../components/partials/footer"
 const FooterTemplate = () => {
   return (
     <Footer>
-      <span>&copy; 2020</span>
+      <span>&copy; 2021</span>
       <span>
-        <a href="https://github.com/rhazdon">Djordje Atlialp</a>
+        Made by <a href="https://github.com/filipkrw">Filip Krawczyk</a>
       </span>
-      <span>
-        <a href="https://github.com/atmhrt">Filip Krawczyk</a>
-      </span>
+      <span>Powered by <a href="https://www.gatsbyjs.com/">Gatsby</a></span>
     </Footer>
   )
 }
