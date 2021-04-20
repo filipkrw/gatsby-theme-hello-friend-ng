@@ -14,6 +14,7 @@ export const query = graphql`
           published_at
           title
           tags
+          show_word_count
         }
         timeToRead
         wordCount {
@@ -29,8 +30,6 @@ const PostTemplate = ({ data, pageContext }) => {
   const body = <MDXRenderer>{data.file.childMdx.body}</MDXRenderer>
   const words = data.file.childMdx.wordCount.words
   const readTime = data.file.childMdx.timeToRead
-
-  console.log(pageContext);
 
   const post = {
     ...data.file.childMdx.frontmatter,
