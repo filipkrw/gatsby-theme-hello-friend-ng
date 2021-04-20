@@ -18,7 +18,7 @@ module.exports = ({
 }) => ({
   siteMetadata: {
     title: "Hello Friend NG",
-    titleTemplate: "%s – Demo Site",
+    titleTemplate: "%s – Hello Friend NG",
     description: "",
     url: "localhost:8000", // No trailing slash allowed!
     image: "",
@@ -54,12 +54,6 @@ module.exports = ({
           default: require.resolve("./src/components/layouts/article.js"),
         },
       },
-    },
-    // {
-    //   resolve: "gatsby-plugin-page-creator",
-    //   options: {
-    //     path: `${contentPath}/pages`,
-    //   },
-    // },
+    }
   ],
 })

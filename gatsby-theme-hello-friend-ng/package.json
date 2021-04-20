@@ -1,8 +1,8 @@
 {
   "name": "gatsby-theme-hello-friend-ng",
-  "description": "Hello Friend NG theme for Gatsby",
+  "description": "Clean and minimalistic personal blog and portfolio theme for Gatsby",
   "author": "Filip Krawczyk",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "index.js",
   "license": "MIT",
   "keywords": [
@@ -51,5 +51,8 @@
     "react-lazy-load-image-component": "^1.5.1",
     "react-syntax-highlighter": "^15.4.3",
     "slugify": "^1.5.0"
+  },
+  "bugs": {
+    "url": "https://github.com/filipkrw/gatsby-theme-hello-friend-ng/issues"
   }
 }
