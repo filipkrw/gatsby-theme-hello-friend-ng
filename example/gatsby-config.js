@@ -6,6 +6,7 @@ module.exports = {
       options: {
         contentPath: "content",
         blog: {
+          create: true,
           path: "posts",
           title: "Posts",
         },

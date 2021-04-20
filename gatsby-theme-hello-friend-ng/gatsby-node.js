@@ -100,18 +100,21 @@ exports.onCreateNode = (
 
 exports.createPages = async (
   { actions, graphql, reporter },
-  { blog = { title: "Blog", path: "blog" } }
+  { blog = { create: true, title: "Blog", path: "blog" } }
 ) => {
   /*
-    Create main blog page
+    Create main blog page.
+    Don't create only if the "create" option is explicitly set to false
   */
-  actions.createPage({
-    path: blog.path,
-    component: require.resolve("./src/templates/posts.js"),
-    context: {
-      title: blog.title,
-    },
-  })
+  if (blog.create !== false) {
+    actions.createPage({
+      path: blog.path,
+      component: require.resolve("./src/templates/posts.js"),
+      context: {
+        title: blog.title,
+      },
+    })
+  }
 
   /*
     Create posts and regular pages
@@ -134,6 +137,9 @@ exports.createPages = async (
     reporter.panic("Error loading mdx files", result.errors)
 
   result.data.allFile.nodes.forEach((node) => {
+    if (blog.create === false && node.sourceInstanceName === "post")
+      return
+
     actions.createPage({
       path: node.fields.slug,
       component: require.resolve(`./src/templates/${node.sourceInstanceName}.js`),

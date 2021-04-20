@@ -1,6 +1,7 @@
 module.exports = ({
   contentPath = "content",
   blog = {
+    create: true,
     title: "Blog",
     path: "blog",
   },
