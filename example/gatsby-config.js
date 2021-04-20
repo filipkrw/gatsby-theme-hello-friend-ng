@@ -28,6 +28,8 @@ module.exports = {
     },
   ],
   siteMetadata: {
-    titleTemplate: "%s – Demo Page"
-  }
+    titleTemplate: "%s – Demo Page",
+    url: "https://filipkrw.github.io/gatsby-theme-hello-friend-ng"
+  },
+  pathPrefix: "/gatsby-theme-hello-friend-ng"
 }
