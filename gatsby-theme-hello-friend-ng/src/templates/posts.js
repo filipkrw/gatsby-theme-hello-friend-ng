@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Helmet } from "react-helmet"
+import Shortcodes from "../components/shortcodes"
 
 import LayoutMain from "../components/layouts/main"
 import Posts from "../components/posts"
@@ -39,7 +39,9 @@ const PostsTemplate = ({ data, pageContext }) => {
   return (
     <LayoutMain>
       <SEO title={pageContext.title} />
-      <Posts posts={posts} title={pageContext.title} />
+      <Shortcodes>
+        <Posts posts={posts} title={pageContext.title} />
+      </Shortcodes>
     </LayoutMain>
   )
 }

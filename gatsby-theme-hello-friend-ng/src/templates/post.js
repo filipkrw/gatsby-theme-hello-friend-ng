@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
+import Shortcodes from "../components/shortcodes"
 
 import LayoutArticle from "../components/layouts/article"
 import Post from "../components/post"
@@ -41,7 +42,9 @@ const PostTemplate = ({ data, pageContext }) => {
   return (
     <LayoutArticle>
       <SEO title={post.title} />
-      <Post {...post} />
+      <Shortcodes>
+        <Post {...post} />
+      </Shortcodes>
     </LayoutArticle>
   )
 }

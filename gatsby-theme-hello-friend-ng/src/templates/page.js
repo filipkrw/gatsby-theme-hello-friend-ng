@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Helmet } from "react-helmet"
 import { MDXRenderer } from "gatsby-plugin-mdx"
+import Shortcodes from "../components/shortcodes"
 
 import LayoutMain from "../components/layouts/main"
 import LayoutArticle from "../components/layouts/article"
@@ -34,9 +34,11 @@ const ArticleTemplate = ({ data }) => {
 				description={frontmatter.description}
 				image={frontmatter.image}
 			/>
-			<MDXRenderer>
-				{data.file.childMdx.body}
-			</MDXRenderer>
+			<Shortcodes>
+				<MDXRenderer>
+					{data.file.childMdx.body}
+				</MDXRenderer>
+			</Shortcodes>
 		</Layout>
 	)
 }
