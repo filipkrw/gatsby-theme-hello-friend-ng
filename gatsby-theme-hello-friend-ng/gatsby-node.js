@@ -7,16 +7,37 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
   const typeDefs = `
+    type File {
+      childMdx: ChildMdx
+      fields: Fields
+    }
     type Mdx implements Node {
       frontmatter: MdxFrontmatter!
     }
+    type ChildMdx {
+      frontmatter: MdxFrontmatter
+      body: String
+      wordCount: WordCount
+      timeToRead: Int
+    }
     type MdxFrontmatter {
+      title: String
       description: String
       image: String
+      layout: String
+      published_at: Date
+      tags: [String]
+      show_word_count: Boolean
+    }
+    type WordCount {
+      words: Int
     }
     type ImageSize {
       width: Int!
       height: Int!
+    }
+    type Fields {
+      slug: String
     }
   `
   createTypes(typeDefs)
