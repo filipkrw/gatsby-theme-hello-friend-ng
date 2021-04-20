@@ -27,5 +27,5 @@ const MagicScriptTag = () => {
 };
 
 exports.onRenderBody = ({ setPreBodyComponents }) => {
-  setPreBodyComponents(<MagicScriptTag />)
+  setPreBodyComponents(<MagicScriptTag key="hello-friend-ng-mode" />)
 }

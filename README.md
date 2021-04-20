@@ -92,7 +92,7 @@ To embed an image from an external source, use the `ImageExternal` component. Ma
 
 #### Code highligting
 
-Displays code snippets with highlighting. You can choose a language and wheter to show line numbers. 
+Displays code snippets with syntax highlighting. You can choose a language and whether to show line numbers. 
 
 ```jsx
 <CodeHighlight
@@ -152,7 +152,7 @@ Displays project tags and links. Check out the example site ["Works" page](https
 
 Check out [this article](https://coffeecodeclimb.com/what-is-frontmatter) to learn more about frontmatter.
 
-#### Fields for pages and posts
+#### Fields for both pages and posts
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |

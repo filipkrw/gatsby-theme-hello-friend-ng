@@ -13,7 +13,7 @@ const toggleBodyClass = () => {
 }
 
 const useModeToggle = (data) => {
-  const [currentMode, setCurrentMode] = useState(document.body.classList.contains("dark-theme") ? "dark" : "light")
+  const [currentMode, setCurrentMode] = useState("dark")
 
   const toggleMode = () => {
     const newMode = toggleBodyClass()
@@ -27,6 +27,10 @@ const useModeToggle = (data) => {
         && !localStorage.getItem("hello-friend-ng-mode")
         && data.default === "dark") {
       toggleMode()
+    }
+
+    if (!document.body.classList.contains("dark-theme")) {
+      setCurrentMode("light")
     }
   }, [])
   

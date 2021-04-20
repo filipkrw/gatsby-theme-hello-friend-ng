@@ -35,7 +35,11 @@ const Posts = ({ title, posts }) => {
   return (
     <main className="posts">
       <h1>{title}</h1>
-      {postsJSX}
+      {posts.length > 0 ? (
+        postsJSX
+        ) : (
+        <p>Nothing here yet.</p>
+      )}
     </main>
   )
 }

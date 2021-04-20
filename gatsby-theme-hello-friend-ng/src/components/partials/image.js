@@ -44,7 +44,8 @@ const Image = ({ file, alt, wide = false }) => {
     (node) => node.fluid.originalName === file
   )
 
-  if (imageSharp) return <ImageSharp image={imageSharp} alt={alt} wide={wide} />
+  if (imageSharp)
+    return <ImageSharp image={imageSharp} alt={alt} wide={wide} />
 
   /*
     Other images, like GIFs, unsupported by gatsby-transformer-sharp
