@@ -5,7 +5,6 @@ Clean and minimalistic personal blog and portfolio theme for Gatsby.
 ### Features
 
 * Create pages and blogposts with `mdx` files
-* Present your projects in a clean way
 * Minimalistic design, light and dark modes
 * Responsive and performant images with neat placeholders and loading animations
 * Code highlighting
@@ -15,13 +14,18 @@ Clean and minimalistic personal blog and portfolio theme for Gatsby.
 
 ## Installation
 
-1. Install the theme.
+1. Create a Gatsby site if you haven't already.
+
+`npm init gatsby`
+
+2. Navigate to the site base directory and install the theme.
 
 `npm install gatsby-theme-hello-friend-ng`
 
-2. Include it in `gatsby-config.js`.
+3. Include it in `gatsby-config.js` file. If it doesn't exist, create it in the base directory.
 
 ```javascript
+// gatsby-config.js
 module.exports = {
   plugins: [
     {
@@ -34,11 +38,11 @@ module.exports = {
 }
 ```
 
-3. Run Gatsby to automatically create content directories.
+4. Run Gatsby to automatically create content directories.
 
 `gatsby develop`
 
-4. Start creating your content.
+5. Start creating your content.
 
 Below are some pointers on how to create content and configure the theme. You can also check out the [example site code](https://github.com/filipkrw/gatsby-theme-hello-friend-ng/tree/master/example) to see how everything works. It's a simple set-up.
 
@@ -181,6 +185,7 @@ If the `description` and `image` fields are not set, the defaults from `gatsby-c
 There are several theme options you can leverage. All the options below are default, you only need to set the ones you want to change.
 
 ```javascript
+// gatsby-config.js
 module.exports = {
   plugins: [
     {
@@ -214,6 +219,7 @@ module.exports = {
 Setting the `siteMetadata` is essential for good SEO. These values will be used as defaults for all pages, unless changed in the frontmatter for particular pages or posts. If left blank, the respective `meta` tags won't be added to the page HTML.
 
 ```javascript
+// gatsby-config.js
 module.exports = {
   plugins: [
     {
