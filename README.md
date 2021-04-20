@@ -4,8 +4,6 @@ Clean and minimalistic personal blog and portfolio theme for Gatsby.
 
 ![Hello Friend NG](https://github.com/filipkrw/gatsby-theme-hello-friend-ng/blob/master/preview.gif?raw=true)
 
-See demo site here.
-
 ### Demo
 
 Check out [the example site](https://filipkrw.github.io/gatsby-theme-hello-friend-ng/). The code is in the `example` directory of this repo.
