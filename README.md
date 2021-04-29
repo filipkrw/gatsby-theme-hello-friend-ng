@@ -264,15 +264,19 @@ Source files are set-up using yarn workspaces as per [this guide](https://www.ga
 
 #### CSS development
 
-Styles have been developed using SCSS preprocessor. To run the development server, you will need `gulp`.
+Styles have been developed using SCSS preprocessor.
 
-1. Install `gulp` if you haven't before.
+1. Navigate to `gatsby-theme-hello-friend-ng/src/assets`.
 
 `npm install --global gulp-cli`
 
-2. Navigate to `gatsby-theme-hello-friend-ng/src/assets/scss`
+2. Install the dependencies.
 
-3. Run `gulp scss:watch` to start the development server. The output CSS file will be rebuilt after every change you make to any of the SCSS files. You can also use `gulp scss` command to build it once.
+`npm install`
+
+3. Run `npm run watch` to start the development server. The output CSS files will be rebuilt after every change you make to any of the SCSS files.
+
+You can also use `npm run build` command to build the CSS once.
 
 ## How to contribute
 
