@@ -16,6 +16,8 @@ export const query = graphql`
           title
           tags
           show_word_count
+          description
+          image
         }
         timeToRead
         wordCount {
@@ -28,12 +30,13 @@ export const query = graphql`
 `
 
 const PostTemplate = ({ data, pageContext }) => {
+  const frontmatter = data.file.childMdx.frontmatter
   const body = <MDXRenderer>{data.file.childMdx.body}</MDXRenderer>
   const words = data.file.childMdx.wordCount.words
   const readTime = data.file.childMdx.timeToRead
 
   const post = {
-    ...data.file.childMdx.frontmatter,
+    ...frontmatter,
     body,
     words,
     readTime,
@@ -41,7 +44,11 @@ const PostTemplate = ({ data, pageContext }) => {
 
   return (
     <LayoutArticle>
-      <SEO title={post.title} />
+      <SEO
+        title={frontmatter.title}
+        description={frontmatter.description}
+        image={frontmatter.image}
+      />
       <Shortcodes>
         <Post {...post} />
       </Shortcodes>

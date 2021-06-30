@@ -29,7 +29,8 @@ module.exports = {
   ],
   siteMetadata: {
     titleTemplate: "%s – Demo Page",
-    url: "https://filipkrw.github.io/gatsby-theme-hello-friend-ng"
+    url: "https://filipkrw.github.io/gatsby-theme-hello-friend-ng",
+    description: "Demo page for Hello Friend NG theme for Gatsby"
   },
   pathPrefix: "/gatsby-theme-hello-friend-ng"
 }
