@@ -3,7 +3,7 @@ module.exports = ({
   blog = {
     create: true,
     title: "Blog",
-    description: "Blog",
+    description: "",
     image: "",
     path: "blog",
   },

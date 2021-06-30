@@ -10,11 +10,11 @@ Check out [the example site](https://filipkrw.github.io/gatsby-theme-hello-frien
 
 ### Features
 
-* Create pages and blogposts with `mdx` files
-* Minimalistic design, light and dark modes
-* Responsive and performant images with neat placeholders and loading animations
-* Code highlighting
-* SEO ready
+- Create pages and blogposts with `mdx` files
+- Minimalistic design, light and dark modes
+- Responsive and performant images with neat placeholders and loading animations
+- Code highlighting
+- SEO ready
 
 [Originally](https://github.com/rhazdon/hugo-theme-hello-friend-ng), this theme was created by [Djordje Atlialp](https://atlialp.com/) for [Hugo](https://gohugo.io/). This version is pretty faithfull to the original, with a few minor changes and additions here and there. Many thanks to Djordje!
 
@@ -38,7 +38,7 @@ module.exports = {
       resolve: "gatsby-theme-hello-friend-ng",
       options: {
         // ...
-      }
+      },
     },
   ],
 }
@@ -82,7 +82,7 @@ To embed local images with neat placeholders, reveal animations and lazy-loading
 
 Under the hood, `Image` component uses `gatsby-plugin-sharp` to optimize PNGs and JPGs. For other image types, like GIFs, it displays the original.
 
-If you need an image to also be a link, use the `LinkImage` component. 
+If you need an image to also be a link, use the `LinkImage` component.
 
 ```jsx
 <LinkImage wide url="#" file="kayaking.png" title="Kayaking" />
@@ -102,7 +102,7 @@ To embed an image from an external source, use the `ImageExternal` component. Ma
 
 #### Code highligting
 
-Displays code snippets with syntax highlighting. You can choose a language and whether to show line numbers. 
+Displays code snippets with syntax highlighting. You can choose a language and whether to show line numbers.
 
 ```jsx
 <CodeHighlight
@@ -133,7 +133,7 @@ Displays socials icons like on the homepage. Refer to [this file](https://github
       title: "Twitter",
       icon: "twitter",
       url: "https://twitter.com/filipkrw",
-    }
+    },
   ]}
 />
 ```
@@ -164,27 +164,27 @@ Check out [this article](https://coffeecodeclimb.com/what-is-frontmatter) to lea
 
 #### Fields for both pages and posts
 
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| title       | string | yes      | Displayed on the page in nice big letters, on the browser tab, as well as used for SEO.
-| description | string | no       | Page description used for SEO. This will be visible when someone shares the page, together with the title.             |
+| Field       | Type   | Required | Description                                                                                                                                            |
+| ----------- | ------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| title       | string | yes      | Displayed on the page in nice big letters, on the browser tab, as well as used for SEO.                                                                |
+| description | string | no       | Page description used for SEO. This will be visible when someone shares the page, together with the title.                                             |
 | image       | string | no       | Same as the description field, this is used for SEO. Just like with image components, the path needs to be relative to the `content/images` directory. |
 
 If the `description` and `image` fields are not set, the defaults from `gatsby-config.js` file will be used (see [Customisation section](#customisation)).
 
 #### Fields exclusive for pages
 
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| layout      | string | no       | Can be set to "center". It's used in the landing page. By default, content will be displayed like in a blogpost.                                        |
+| Field  | Type   | Required | Description                                                                                                      |
+| ------ | ------ | -------- | ---------------------------------------------------------------------------------------------------------------- |
+| layout | string | no       | Can be set to "center". It's used in the landing page. By default, content will be displayed like in a blogpost. |
 
 #### Fields exclusive for posts
 
-| Field           | Type | Required | Description |
-| --------------- | -------- | ----------- | --- |
-| published_at    | date | yes | In any format JavaScript Date object will understand, i.e. YYYY-MM-DD.
-| tags            | string array | no | At the moment, tags are simply displayed in the post footer.
-| show_word_count | boolean | no | Whether to show word count in the post footer. The default is `false`.
+| Field           | Type         | Required | Description                                                            |
+| --------------- | ------------ | -------- | ---------------------------------------------------------------------- |
+| published_at    | date         | yes      | In any format JavaScript Date object will understand, i.e. YYYY-MM-DD. |
+| tags            | string array | no       | At the moment, tags are simply displayed in the post footer.           |
+| show_word_count | boolean      | no       | Whether to show word count in the post footer. The default is `false`. |
 
 ## Customisation
 
@@ -202,9 +202,12 @@ module.exports = {
           default: "dark", // or "light"
           allowChange: true,
         },
-        // Blog title and URL path
+        // Blog title, description, image, and URL path
+        // Title, description and image fields will be used for metadata tags
         blog: {
           title: "Blog",
+          description: "",
+          image: "", // path relative to yourContentPath/images
           path: "blog",
         },
         // List of top nav links
@@ -212,13 +215,13 @@ module.exports = {
           {
             name: "Blog",
             link: "/blog",
-          }
+          },
         ],
         // Directory for your pages, posts and images
-        contentPath: "content", 
+        contentPath: "content",
       },
     },
-  ]
+  ],
 }
 ```
 
@@ -232,17 +235,17 @@ module.exports = {
       resolve: "gatsby-theme-hello-friend-ng",
       options: {
         // ...
-      }
-    }
+      },
+    },
   ],
   siteMetadata: {
     title: "Hello Friend NG",
     titleTemplate: "%s – Demo Site",
     url: "localhost:8000", // No trailing slash allowed!
     description: "",
-    image: "",
-    twitterUsername: ""
-  }
+    image: "", // path relative to yourContentPath/images
+    twitterUsername: "",
+  },
 }
 ```
 
