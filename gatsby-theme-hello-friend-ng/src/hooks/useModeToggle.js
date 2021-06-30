@@ -21,11 +21,11 @@ const useModeToggle = (data) => {
   }
 
   useEffect(() => {
-    // No saved theme mode preference in localStorage, and default mode is set to dark - add 'dark-theme' class to body
-    // Happens only on first load
+    // No saved theme mode preference in localStorage, and default mode is set to dark - remove 'dark-theme' class from body
+    // Happens only on first ever load
     if (typeof window !== 'undefined'
-        && !localStorage.getItem("hello-friend-ng-mode")
-        && data.default === "dark") {
+      && !localStorage.getItem("hello-friend-ng-mode")
+      && data.default === "light") {
       toggleMode()
     }
 
@@ -33,7 +33,7 @@ const useModeToggle = (data) => {
       setCurrentMode("light")
     }
   }, [])
-  
+
   return [currentMode, toggleMode, data.allowChange]
 }
 

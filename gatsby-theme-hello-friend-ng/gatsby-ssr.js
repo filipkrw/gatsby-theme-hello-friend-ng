@@ -16,16 +16,17 @@ const MagicScriptTag = () => {
   const codeToRunOnClient = `
     (function() {
       if (typeof window !== 'undefined'
-          && localStorage.getItem("hello-friend-ng-mode") === "dark") {
-        document.body.classList.add('dark-theme');
+          && localStorage.getItem("hello-friend-ng-mode") === "light") {
+        document.body.classList.remove('dark-theme');
       }
     })()
   `;
-  
+
   // eslint-disable-next-line react/no-danger
   return <script dangerouslySetInnerHTML={{ __html: codeToRunOnClient }} />
 };
 
-exports.onRenderBody = ({ setPreBodyComponents }) => {
+exports.onRenderBody = ({ setPreBodyComponents, setBodyAttributes }) => {
+  setBodyAttributes({ 'className': 'dark-theme' })
   setPreBodyComponents(<MagicScriptTag key="hello-friend-ng-mode" />)
 }
