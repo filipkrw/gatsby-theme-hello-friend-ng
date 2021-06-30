@@ -39,6 +39,11 @@ exports.createSchemaCustomization = ({ actions }) => {
     type Fields {
       slug: String
     }
+    type SiteSiteMetadataHelloFriendNGBlog {
+      title: String
+      description: String
+      image: String
+    }
   `
   createTypes(typeDefs)
 }
@@ -66,7 +71,7 @@ exports.createResolvers = ({ createResolvers }) => {
 exports.onCreateNode = (
   { node, getNode, actions },
   { blog = { path: "blog" }, contentPath = "content" }
-  ) => {
+) => {
   const { createNodeField } = actions
 
   const paths = {
@@ -109,10 +114,7 @@ exports.createPages = async (
   if (blog.create !== false) {
     actions.createPage({
       path: blog.path,
-      component: require.resolve("./src/templates/posts.js"),
-      context: {
-        title: blog.title,
-      },
+      component: require.resolve("./src/templates/posts.js")
     })
   }
 

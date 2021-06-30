@@ -3,6 +3,8 @@ module.exports = ({
   blog = {
     create: true,
     title: "Blog",
+    description: "Blog",
+    image: "",
     path: "blog",
   },
   mode = {
@@ -27,7 +29,9 @@ module.exports = ({
       mode,
       menuLinks,
       blog: {
-        title: blog.title
+        title: blog.title,
+        description: blog.description,
+        image: blog.image
       }
     }
   },

@@ -9,6 +9,7 @@ module.exports = {
           create: true,
           path: "posts",
           title: "Posts",
+          description: "Demo page blog"
         },
         mode: {
           default: "dark",

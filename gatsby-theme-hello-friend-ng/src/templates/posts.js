@@ -25,22 +25,38 @@ export const query = graphql`
         id
       }
     }
+    site {
+      siteMetadata {
+        helloFriendNG {
+          blog {
+            title
+            description
+            image
+          }
+        }
+      }
+    }
   }
 `
 
-const PostsTemplate = ({ data, pageContext }) => {
+const PostsTemplate = ({ data }) => {
   const nodes = data.allFile.nodes
   const posts = nodes.map((node) => ({
     ...node.childMdx.frontmatter,
     ...node.fields,
     id: node.id,
   }))
+  const metadata = data.site.siteMetadata.helloFriendNG.blog
 
   return (
     <LayoutMain>
-      <SEO title={pageContext.title} />
+      <SEO
+        title={metadata.title}
+        description={metadata.description}
+        image={metadata.image}
+      />
       <Shortcodes>
-        <Posts posts={posts} title={pageContext.title} />
+        <Posts posts={posts} title={metadata.title} />
       </Shortcodes>
     </LayoutMain>
   )
