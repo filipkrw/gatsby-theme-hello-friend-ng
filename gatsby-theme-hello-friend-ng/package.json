@@ -2,7 +2,7 @@
   "name": "gatsby-theme-hello-friend-ng",
   "description": "Clean and minimalistic personal blog and portfolio theme for Gatsby",
   "author": "Filip Krawczyk",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "main": "index.js",
   "license": "MIT",
   "keywords": [
